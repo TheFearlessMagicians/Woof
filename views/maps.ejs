@@ -1,6 +1,6 @@
 <% include ./partials/header %>
     <div class="container" id="page">
-        <% if(authorized == true){ %>
+        <% if(authorized != true){ %>
             <!-- This is for Register access. Separate register page redirects to this map.ejs where login isn't displayed. -->
             <% include ./partials/login %>
                 <% } %>
@@ -8,8 +8,9 @@
                         <div class="container col-sm-6" style="width: 50%;" id="mapContainer">
                             <div id="map"></div>
                             <link rel= "stylesheet" href="public/stylesheets/dogPopupStyle.css">
-
+                             <link rel= "stylesheet" href="public/stylesheets/chatStyle.css">
                               <script src = "/public/dogPopup.js"></script>
+                              <script src = "/public/chatScript.js"></script>
                               <script src = "/public/stylesheets/gmapsStyle.js"></script>
                             <script>
                             //dummy data.
@@ -125,7 +126,33 @@
                             </script>
                         </div>
                         <div class="container col-sm-6" style="width:50%;">
-                            <h2> realtime chat app.</h2>
+
+                            <div class="chat_window">
+                                  <div class="top_menu">
+                                      <!--<div class="buttons">
+                                          <div class="button close"></div>
+                                          <div class="button minimize"></div>
+                                          <div class="button maximize"></div>
+                                </div>-->
+                                      <div class="title">Chat</div>
+                                  </div>
+                                  <ul class="messages"></ul>
+                                  <div class="bottom_wrapper clearfix">
+                                      <div class="message_input_wrapper"><input class="message_input" placeholder="Type your message here..." /></div>
+                                      <div class="send_message">
+                                          <div class="icon"></div>
+                                          <div class="text">Send</div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="message_template">
+                                  <li class="message">
+                                      <div class="avatar"></div>
+                                      <div class="text_wrapper">
+                                          <div class="text"></div>
+                                      </div>
+                                  </li>
+                              </div>
                         </div>
                     </div>
     </div>
