@@ -35,6 +35,7 @@ function seed() {
         firstName: "Hanif",
         lastName: "Lim",
         nickName: "Han",
+        username: "HanSolo",
         numberOfDogs: 3,
         email: "hanifleoputeralim@gmail.com",
     }, function(error, createdUser) {

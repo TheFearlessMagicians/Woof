@@ -2,17 +2,9 @@ let express = require('express');
 	router = express.Router({ mergeParams: true });
 	User = require("../models/user")
 
-router.post('/login', function(req, res) {
-	let password = ''; //TODO HANDLE password post request.
-
-    res.render('login', {});
-    //TODO: register page.
-}
-
+//REGISTER ROUTE
 router.get('/register', function(req, res) {
-    res.render('register', {
-
-    });
+    res.render('register', {});
 }); 
 
 router.post("/register", function (req,res){
@@ -20,7 +12,7 @@ router.post("/register", function (req,res){
 		if (error){
 			console.log("COULD NOT REGISTER USER IN THE POST ROUTE");
 		} else {
-			res.redirect()
+			res.redirect("/main");
 		}
 	});
 });
