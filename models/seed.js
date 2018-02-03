@@ -29,11 +29,7 @@ function seed() {
             isTherapyDog: true,
             behaviourWithStrangers: "aggressive",
             description: "The Poodle, though often equated to the beauty with no brains, is exceptionally smart, active and excels in obedience training. The breed comes in three size varieties, which may contribute to why Poodle is one of the most popular breeds according to AKC® Registration statistics. Poodles can be a variety of solid colors, including white, black, apricot and gray, but never parti-colored.",
-<<<<<<< HEAD
             location: [34.0195, 118.4912],
-=======
-            location: [34.0195, 118.4912]
->>>>>>> 764be550b3363f2402ba21b03775437eaf290322
         },
     }
 
