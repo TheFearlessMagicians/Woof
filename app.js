@@ -83,6 +83,7 @@ io.on('connection', function(socket) {
         })
 
     });
+
     socket.on('POSITION_RECEIVED', function(latLng) {
         //Note: latLng is a json object of :
         //{lat: LATITUDE, lng: LONGITUDE};
