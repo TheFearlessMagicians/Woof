@@ -1,12 +1,15 @@
 <% include ./partials/header %>
     <div class="container" id="page">
-        <% if(authorized != true){ %>
+        <% if(authorized == true){ %>
             <!-- This is for Register access. Separate register page redirects to this map.ejs where login isn't displayed. -->
             <% include ./partials/login %>
                 <% } %>
                     <div class="container col-sm-12">
                         <div class="container col-sm-6" style="width: 50%;" id="mapContainer">
                             <div id="map"></div>
+                            <link rel= "stylesheet" href="public/stylesheets/dogPopupStyle.css">
+
+                              <script src = "/public/dogPopup.js"></script>
                             <script>
                             //dummy data.
                             function addDummyDogs(centerLatLng) {
@@ -138,33 +141,33 @@
 
                                         // Add a marker clusterer to manage the markers.
                                         var markerCluster = new MarkerClusterer(map, markers, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
+                                        markers.forEach((marker)=>{google.maps.event.addListener(marker, 'click', function() {
+                                                  var infowindow = new google.maps.InfoWindow({
+                                                               content:  getdogPopupString('doggoName','/public/Dogs/samoyed-puppy.jpg','/dog/1','/user/1')
+                                                             });
+                                          //infowindow.setContent(this.content);
 
+                                          infowindow.open(map, this);
+                                        })});
                                         // infoWindow.setPosition(pos);
                                         //infoWindow.setContent('Location found.');
                                         //infoWindow.open(map);
                                         map.setCenter(pos);
                                     }, function() {
-                                        //  handleLocationError(true, infoWindow, map.getCenter());
+
                                     });
                                 } else {
-                                    // Browser doesn't support Geolocation
-                                    //handleLocationError(false, infoWindow, map.getCenter());
+
                                 }
-                                // function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-                                //  infoWindow.setPosition(pos);
-                                //  infoWindow.setContent(browserHasGeolocation ?
-                                //                    'Error: The Geolocation service failed.' :
-                                //                    'Error: Your browser doesn\'t support geolocation.');
-                                //        infoWindow.open(map);
-                                //}
+
                             }
                             </script>
                             <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
                             </script>
                             <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%- gmapsCredential %>&callback=initMap">
                             </script>
-                            <script src="/socket.io/socket.io.js">
-                            </script>
+                            <script src="/socket.io/socket.io.js"> </script>
+
                             <script>
                             //--------------Socket Script ---------------------------//
                             var numUsersOnline = "h2";
@@ -179,15 +182,19 @@
                                 //$(numUsersOnline).html();
                             });
                             socket.on('DOGS_NEAR_USER', function(dogs) {
-                                dogs.map(function(location, i) {
+                               var markers= dogs.map(function(location, i) {
                                     return new google.maps.Marker({
                                         position: location,
                                         label: labels[i % labels.length]
                                     });
                                 });
+                                //
                                 // Add a marker clusterer to manage the markers.
                                 var markerCluster = new MarkerClusterer(map, markers, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-
+                                google.maps.event.addListener(marker, 'click', function() {
+                                  infowindow.setContent(this.content);
+                                  infowindow.open(map, this);
+                                });
                             });
                             </script>
                         </div>
