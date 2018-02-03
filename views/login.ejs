@@ -1,0 +1,17 @@
+<% include ./partials/header %>
+<form method= "POST" action="/login" class= "animate form-inline" id="logInterface">
+    <div class="form-group">
+	    <label style="margin-bottom: -1%;" for= "username"><b>Username</b></label>
+	    <input id="username" type="text" placeholder="Enter Username" name="uname" required>
+
+	    <label style="margin-bottom: -1%;" for="pwd"><b>Password</b></label>
+	    <input id="password" type="password" placeholder="Enter Password" name="pwd" required>
+
+	    <button type="submit" id="login">Login</button>
+
+	    <div id = "register">
+	    	<h5><center><a href="/register">Or Register </a></center></h4>
+	    </div>
+  	</div>
+</form>
+<% include ./partials/footer %>
