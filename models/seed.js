@@ -36,6 +36,8 @@ function seed() {
         lastName: "Lim",
         nickName: "Han",
         username: "HanSolo",
+        password: "password123",
+        address: "330 De Neve Drive, Los Angeles, CA",
         numberOfDogs: 3,
         email: "hanifleoputeralim@gmail.com",
     }, function(error, createdUser) {
