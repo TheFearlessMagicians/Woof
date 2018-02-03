@@ -1,4 +1,5 @@
 <% include ./partials/header %>
+
     <div class="container col-md-12">
         <div class="col-md-6">
             <div class="container-fixed">
@@ -102,11 +103,15 @@
 <% include ./partials/footer %>
 
 <script>
-function insertDogsForm() {
-    let numberOfDogs = Number(document.getElementById('nDogs').value);
-    console.log(`insert dogs form called back. ${numberOfDogs} dogs`);
-    for (let x = 1; x <= numberOfDogs; x++) {
-        $(`ul`).append(` <h2>Dog ${x} </h2> <%- include ./partials/dogForm %>`);
-    }
-};
+function insertDogsForm(){
+	let numberOfDogs = Number(document.getElementById('nDogs').value);
+	console.log(`insert dogs form called back. ${numberOfDogs} dogs`);
+
+          $('ul ').html('');
+
+          for(let x = 1; x <= numberOfDogs; x++){
+		$(`ul`).append(` <div id="dogForm_${x}">
+                              <h2>Dog ${x} </h2>
+                     <%- include ./partials/dogForm %> </div>`);
+           }};
 </script>
