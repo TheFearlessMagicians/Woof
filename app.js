@@ -13,6 +13,7 @@ let express = require("express");
 	mongoose.connect("mongodb://localhost/Woof");
 
 //Routes
+app.use(express.static('public'));
 app.use(require('./routes/dogOwners'));
 app.use(require('./routes/landing'));
 app.use(require('./routes/login'));
