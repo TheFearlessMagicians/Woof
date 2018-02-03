@@ -8,6 +8,9 @@ let userSchema = new mongoose.Schema({
 	nickName: String,
 	numberOfDogs: Number,
 	email: String,
+	username: String,
+	password: String,
+	address: String,
 	dogs: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Dog",
