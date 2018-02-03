@@ -1,3 +1,4 @@
+/*header CSS + animation */
 #landing-header {
   z-index: 1;
   position: relative;
@@ -71,6 +72,16 @@
     opacity: 0
   }
 }
+
+/*Map page CSS*/
+
+#page{
+	width: 600px;
+	margin: 0 auto;
+	backgorund-color: #7D1935;
+}
+
+
 
 
 
