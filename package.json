@@ -26,6 +26,7 @@
   "homepage": "https://github.com/TheFearlessMagicians/Woof#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
     "express": "^4.16.2",
     "express-router": "0.0.1",
     "method-override": "^2.3.10",
