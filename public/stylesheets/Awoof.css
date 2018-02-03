@@ -37,21 +37,22 @@
 }
 
 .slideshow li:nth-child(1) { 
-  background-image: ../Dogs/5.jpg;
+  background-image: url(../Dogs/5.jpg);
 }
 .slideshow li:nth-child(2) { 
-  background-image: ../Dogs/cover.png;
+  background-image: url(../Dogs/cover.png);
+  animation-delay: 10s; 
 }
 .slideshow li:nth-child(3) { 
-  background-image: ../Dogs/klee_kai_puppy.jpg;
+  background-image: url(../Dogs/klee_kai_puppy.jpg);
   animation-delay: 20s; 
 }
 .slideshow li:nth-child(4) { 
-  background-image: ../Dogs/golden_retriever.jpg;
+  background-image: url(../Dogs/golden_retriever.jpg);
   animation-delay: 30s; 
 }
 .slideshow li:nth-child(5) { 
-  background-image: ../Shih_tzu_SERP.jpg;
+  background-image: url(../Shih_tzu_SERP.jpg);
   animation-delay: 40s; 
 }
 
@@ -75,7 +76,7 @@
 /*Map page CSS*/
 
 #page{
-	width: 600px;
+	width: 100%;
 	margin: 0 auto;
 	background-color: #7D1935;
 }
@@ -107,11 +108,29 @@
 }
 
 /* Modal Content/Box */
+#logInterface{
+	border: 3px solid #f1f1f1;
+}
+
 .modal-content {
     background-color: #fefefe;
     margin: 5px auto; /* 15% from the top and centered */
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.form-group {
+    padding: 16px;
+    width: 100%;
 }
 
 /* Set a style for all buttons */
@@ -131,7 +150,7 @@ button:hover {
 }
 
 .register{
-	text-align: center;
+	margin: 0 auto;
 	padding-top: 16px;
 	color: #FFFFFF;
 }
