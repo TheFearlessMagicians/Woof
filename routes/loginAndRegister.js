@@ -27,13 +27,13 @@ router.get('/login', function(req,res){
 });
 
 router.post('/login', passport.authenticate('local', {
-    successRedirect: "/main?_WilsonFixTHis",
-    failureRedirect: "/404",
+    successRedirect: "/",
+    failureRedirect: "/login",
 }), function(req, res) {});
 
 router.get('/logout', function(req,res){
     req.logout();
-    res.redirect("/main");
+    res.redirect("/");
 });
 
 router.get('/register', function(req, res) {
@@ -46,6 +46,7 @@ router.post("/register", function(req, res) {
         if (error) {
             console.log("COULD NOT REGISTER USER IN THE POST ROUTE");
             res.render("register");
+            console.log(error);
         } else {
             passport.authenticate("local")(req, res, function() {
                 let user = req.body.user;
