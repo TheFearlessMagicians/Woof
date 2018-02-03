@@ -1,16 +1,28 @@
 let express = require('express');
 	router = express.Router({ mergeParams: true });
-           bodyParser = require('body-parser');
+	User = require("../models/user")
 
 router.post('/login', function(req, res) {
-          let password = '' ; //TODO HANDLE password post request.
+	let password = ''; //TODO HANDLE password post request.
 
-          res.render('login', {
-            });
-//TODO: register page.
+    res.render('login', {});
+    //TODO: register page.
+}
+
 router.get('/register', function(req, res) {
     res.render('register', {
 
     });
+}); 
+
+router.post("/register", function (req,res){
+	User.create(req.body.user, function (error, newlyCreatedUser){
+		if (error){
+			console.log("COULD NOT REGISTER USER IN THE POST ROUTE");
+		} else {
+			res.redirect()
+		}
+	});
 });
+
 module.exports = router;
