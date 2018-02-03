@@ -169,10 +169,11 @@ function initMap() {
 //        infoWindow.open(map);
       //}
 }
+console.log('<%- gmapsCredential %>');
                   </script>
                   <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
                   </script>
-                  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIFRw48ufnJ1qryQ10ououfrFzwCO7nvU&callback=initMap">
+                  <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%- gmapsCredential %>&callback=initMap">
                   </script>
 	</div>
 </div>
