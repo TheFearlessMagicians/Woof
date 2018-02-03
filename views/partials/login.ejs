@@ -1,17 +1,22 @@
  <div class = "modal" id = "login">
-    <form class= "modal-content animate form-inline" id="logInterface" action="#">
+    <form class= "modal-content animate form-inline" id="logInterface">
     	<div class="form-group">
 		      <label for= "username"><b>Username</b></label>
-		      <input type="text" placeholder="Enter Username" name="username" required>
+		      <input id="username" type="text" placeholder="Enter Username" name="uname" required>
 
 		      <label for="pwd"><b>Password</b></label>
-		      <input type="password" placeholder="Enter Password" name="pwd" required>
+		      <input id="password" type="password" placeholder="Enter Password" name="pwd" required>
 
 		      <button type="submit" id="login">Login</button>
 
 		      <div id = "register">
-		      	<h5><a href="#">register</a></h5>
+		      	<h5><center><a href="/register">Register </a></center></h4>
 		      </div>
   		</div>
 	</form>
 </div>
+<script>
+$(`button #login`).on('click', function(event){
+	$.post("/login", {username: document.getElementById('username').value, password: document.getElementById('password').value})
+});
+</script>
