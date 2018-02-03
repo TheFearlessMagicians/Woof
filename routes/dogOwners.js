@@ -12,11 +12,11 @@ router.post('/expressinterest/:id', function(req, res) {
     email(sender, "wilsonjusuf1998@gmail.com", "I want your doggo!", credentials.mailgun, () => {})
 
 })
-router.get('/owners/:id',function(req,res){
-          res.render('userPage',{
-                    id: req.params.id//TODO
+router.get('/user/:id', function(req, res) {
+    res.render('userPage', {
+        id: req.params.id //TODO
 
-          });
+    });
 
-})
+});
 module.exports = router;
