@@ -6,7 +6,7 @@
                 <h1 class="well">Registration Form</h1>
                 <div class="col-lg-12 well">
                     <div class="row">
-                        <form>
+                        <form  action = "/register" method="POST" id="registerForm">
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label style="margin-bottom: -1.5%;">Name</label>
@@ -92,7 +92,7 @@
                                 </div>
                                 <ul>
                                 </ul>
-                                <button type="button" class="btn btn-lg btn-info">Submit</button>
+                                <button type="submit" form="registerForm" class="btn btn-lg btn-info" id="submitButton">Submit</button>
                             </div>
                         </form>
                     </div>
@@ -113,5 +113,7 @@ function insertDogsForm(){
 		$(`div #doggoNumber`).append(` <div class= "dogStyling" id="dogForm_${x}">
                               <h2>Dog ${x} </h2>
                      <%- include ./partials/dogForm %> </div>`);
-           }};
+           }
+ };
+
 </script>
