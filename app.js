@@ -14,10 +14,10 @@ let express = require("express");
 
 //Models settings
 	Dog = require("./models/dog");
-	User = require("./models/user"); 
+	User = require("./models/user");
 
 //Routes
-app.use(express.static('public'));
+app.use('/public',express.static(__dirname + '/public'));
 app.use(require('./routes/dogOwners'));
 app.use(require('./routes/landing'));
 app.use(require('./routes/login'));
@@ -30,7 +30,9 @@ app.set('views', 'views');
 
 
 
+
 //Server listen:
+
 var server = app.listen(app.get('port'), function() {
   console.log('Listening on port ' + app.get('port'));
 });
