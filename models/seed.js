@@ -2,7 +2,7 @@
 let mongoose = require("mongoose");
 
 //Models set up
-Dog = require("../dog");
+Dog = require("./dog");
 User = require("./user");
 
 function seed() {
@@ -26,7 +26,7 @@ function seed() {
             console.log("UNABLE TO REMOVE USERS WHEN SEEDING");
         }
     });
-    Dogs.remove({}, function(error) {
+    Dog.remove({}, function(error) {
         if (error) {
             console.log("UNABLE TO REMOVE DOGS WHEN SEEDING");
         }
@@ -41,23 +41,29 @@ function seed() {
         if (error) {
             console.log("UNABLE CREATE USER WHEN SEEDING");
         } else {
-            for (let i = 0; i < 3; i++) {
+            for (let key in seedDogs) {
                 Dog.create({
-                    name: Object.keys(seedDogs)[i],
-                    breed: seedDogs.name.breed,
-                    age: seedDogs.name.age,
+                    name: key,
+                    breed: key.breed,
+                    age: key.age,
                 }, function(error, createdDog) {
                     if (error) {
                         console.log("UNABLE CREATE DOG WHEN SEEDING");
                     } else {
-                        // console.log(createdDog);
+                        createdUser.update({
+                            $push: {
+                                dogs: createdDog
+                            }
+                        }, function(error, updatedUser) {
+                            if (error) {
+                                console.log("FAILED TO UPDATE PLAYER IN SEEDING");
+                            }
+                        });
                     }
                 });
             }
         }
     });
-
-
 }
 
 module.exports = seed;
