@@ -1,8 +1,8 @@
-var credentials =require('../credentials/credentials.js');
-var express = require('express');
-var router = express.Router({mergeParams:true});
-var email = require('../scripts/email').expressInterest;
-var bodyParser = require('body-parser');
+let credentials =require('../credentials/credentials.js');
+	express = require('express');
+	router = express.Router({mergeParams:true});
+	email = require('../scripts/email').expressInterest;
+	bodyParser = require('body-parser');
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));

@@ -46,6 +46,7 @@ function seed() {
                     name: key,
                     breed: key.breed,
                     age: key.age,
+                    owner: createdUser,
                 }, function(error, createdDog) {
                     if (error) {
                         console.log("UNABLE CREATE DOG WHEN SEEDING");
