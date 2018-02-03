@@ -16,6 +16,7 @@ router.get('/register', function(req, res) {
 router.post('/register', function (req,res){
 	User.create({
 		name: req.body.name;
+		
 	})
 });
 
