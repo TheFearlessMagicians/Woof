@@ -17,7 +17,7 @@ let dogSchema = new mongoose.Schema ({
 	owner: {
 		ref: "owner",
 		type: mongoose.Schema.ObjectId,
-	}
+	},
 	created: {
 		type: Date,
 		default: Date.now,
