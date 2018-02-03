@@ -14,14 +14,14 @@ let express = require("express");
 
 //Routes
 app.use(require('./routes/dogOwners'));
-app.use(require('./routes/index'));
+app.use(require('./routes/landing'));
 app.use(require('./routes/login'));
 app.use(require('./routes/map'));
 
 //app settings
 app.set('port',serverPort);
 app.set('view engine', 'ejs');
-app.set('views', 'app/views');
+app.set('views', 'views');
 
 
 
