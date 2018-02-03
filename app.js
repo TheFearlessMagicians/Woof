@@ -69,7 +69,7 @@ io.on('connection', function(socket) {
     socket.on('POSITION_RECEIVED',function(latLng){
               //Note: latLng is a json object of :
               //{lat: LATITUDE, lng: LONGITUDE};
-              let geospatial_query_result = "TODO: INSERT GEO QUERY RESULT HERE";
+              let geospatial_query_result = "TODO: INSERT GEO QUERY RESULT HERE"; // get all dogs within range of latLng.
               socket.emit('DOGS_NEAR_USER',geospatial_query_result);
    })
 
