@@ -16,6 +16,10 @@ let express = require("express");
 	Dog = require("./models/dog");
 	User = require("./models/user");
 
+//Seed file set up
+	seed = require("./models/seed");
+	seed();
+
 //Routes
 app.use('/public',express.static(__dirname + '/public'));
 app.use(require('./routes/dogOwners'));

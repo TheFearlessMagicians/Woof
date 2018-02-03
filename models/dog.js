@@ -15,8 +15,8 @@ let dogSchema = new mongoose.Schema ({
 		index: "2dsphere",
 	},
 	owner: {
-		ref: "User",
 		type: mongoose.Schema.ObjectId,
+		ref: "User",
 	},
 	created: {
 		type: Date,
