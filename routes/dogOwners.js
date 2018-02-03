@@ -1,7 +1,7 @@
 let credentials = require('../credentials/credentials.js');
 express = require('express');
 router = express.Router({ mergeParams: true });
-email = require('../scripts/email').expressInterest;
+var email = require('../scripts/email').expressInterest;// THIS HAS TO BE VAR.
 User = require('../models/user');
 
 
@@ -10,7 +10,10 @@ router.use(bodyParser.urlencoded({ extended: false }));
 
 router.post('/expressinterest/:id', function(req, res) {
     let sender = req.params.id;
-    email(sender, "wilsonjusuf1998@gmail.com", "I want your doggo!", credentials.mailgun, () => {})
+    let msg = req.body.message;
+    //email(sender, "wilsonjusuf1998@gmail.com", "I want your doggo!", credentials.mailgun, () => {})
+    email(sender, "wilsonjusuf1998@gmail.com", msg, credentials.mailgun, () => {});
+
 
 })
 router.get('/user/:id', function(req, res) {
@@ -20,7 +23,7 @@ router.get('/user/:id', function(req, res) {
         } else {
             console.log(foundUser);
             res.render('userPage', {
-                user: foundUser,
+                user: foundUser
             });
         }
     });
