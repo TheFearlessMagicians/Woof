@@ -24,7 +24,6 @@ router.post("/register", function(req, res) {
         } else {
             newlyCreatedUser.url = "/user/" + newlyCreatedUser.id;
             newlyCreatedUser.save(function(error, savedUser) {
-                console.log(savedUser);
                 res.render('maps', {
                     gmapsCredential: credentials.gmaps,
                     'authorized': true

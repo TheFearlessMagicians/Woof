@@ -27,6 +27,7 @@ app.use(require('./routes/dogOwners'));
 app.use(require('./routes/landing'));
 app.use(require('./routes/loginAndRegister'));
 app.use(require('./routes/map'));
+app.use(require('./routes/dog'));
 
 //App settings
 app.set('port', serverPort);
