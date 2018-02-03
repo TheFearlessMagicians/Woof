@@ -48,8 +48,9 @@ io.on('connection', function(socket) {
     let temp = app.get('sockets');
     temp.push(socket);
     app.set('sockets',temp);
-    console.log(`${app.get('sockets').length} players`)
-    socket.on('')
+    console.log(`${app.get('sockets').length} players`);
+
+    //socket.on('')
 
     // Events:
 
