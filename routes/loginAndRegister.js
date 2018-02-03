@@ -22,10 +22,19 @@ router.get('/404', function(req, res) {
     res.send("Failed to Log in", 404);
 });
 
+router.get('/login', function(req,res){
+    res.render('login');
+});
+
 router.post('/login', passport.authenticate('local', {
     successRedirect: "/main?_WilsonFixTHis",
     failureRedirect: "/404",
 }), function(req, res) {});
+
+router.get('/logout', function(req,res){
+    req.logout();
+    res.redirect("/main");
+});
 
 router.get('/register', function(req, res) {
     res.render('register', {});
