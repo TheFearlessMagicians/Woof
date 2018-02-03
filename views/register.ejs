@@ -42,7 +42,7 @@
 
 					<div class="form-group">
 						<label>How many dogs do you have?</label>
-						<input id ="nDogs" type="text" placeholder="Enter Number of Dogs Here.." class="form-control" name= "user[numberOfDogs]" onkeypress= "insertDogsForm()">
+						<input id ="nDogs" type="number" placeholder="Enter Number of Dogs Here.." class="form-control" name= "user[numberOfDogs]" onkeypress= "insertDogsForm()" value=0>
 					</div>	
 
 
@@ -62,7 +62,10 @@
 <script>
 
 function insertDogsForm(){
-	let numberOfDogs = document.getElementById(nDogs).value;
+	let numberOfDogs = Number(document.getElementById('nDogs').value);
+	console.log(`insert dogs form called back. ${numberOfDogs} dogs`);
 	for(let x = 1; x <= numberOfDogs; x++){ 
-		$(`ul`).append(`<%- include `);
+		$(`ul`).append(` <h2>Dog ${x} </h2> <%- include ./partials/dogForm %>`);
 }};
+
+</script>
