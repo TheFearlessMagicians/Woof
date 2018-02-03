@@ -7,9 +7,9 @@
   </div>
 
   <div class = "container" id = "mapContainer">
-      <div id="map"></div>
+            <div id="map"></div>
          <script>
-
+                    //dummy data.
                     function addDummyDogs(centerLatLng){
                               let locations = [];
                               for ( let i = 0; i < 10 ; i++)
@@ -30,7 +30,109 @@ function initMap() {
             };
             var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 13,
-            center: pos
+            center: pos,
+            styles:
+          [
+              {
+                  "featureType": "all",
+                  "elementType": "all",
+                  "stylers": [
+                      {
+                          "saturation": "32"
+                      },
+                      {
+                          "lightness": "-3"
+                      },
+                      {
+                          "visibility": "on"
+                      },
+                      {
+                          "weight": "1.18"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "administrative",
+                  "elementType": "labels",
+                  "stylers": [
+                      {
+                          "visibility": "on"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "landscape",
+                  "elementType": "labels",
+                  "stylers": [
+                      {
+                          "visibility": "on"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "landscape.man_made",
+                  "elementType": "all",
+                  "stylers": [
+                      {
+                          "saturation": "-70"
+                      },
+                      {
+                          "lightness": "14"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "poi",
+                  "elementType": "labels",
+                  "stylers": [
+                      {
+                          "visibility": "on"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "road",
+                  "elementType": "labels",
+                  "stylers": [
+                      {
+                          "visibility": "on"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "transit",
+                  "elementType": "labels",
+                  "stylers": [
+                      {
+                          "visibility": "on"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "water",
+                  "elementType": "all",
+                  "stylers": [
+                      {
+                          "saturation": "100"
+                      },
+                      {
+                          "lightness": "-14"
+                      }
+                  ]
+              },
+              {
+                  "featureType": "water",
+                  "elementType": "labels",
+                  "stylers": [
+                      {
+                          "visibility": "on"
+                      },
+                      {
+                          "lightness": "12"
+                      }
+                  ]
+              }
+          ]
             });
             console.log('creating a map here.');
             // Create an array of alphabetical characters used to label the markers.
