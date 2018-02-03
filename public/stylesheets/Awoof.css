@@ -37,22 +37,21 @@
 }
 
 .slideshow li:nth-child(1) { 
-  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmDiN44q3kGa3Nu-NmxsmPF7keyNDmMwGc3GD0XcHknu8wXxq4) 
+  background-image: ../Dogs/5.jpg;
 }
 .slideshow li:nth-child(2) { 
-  background-image: url(https://honesttopaws.com/wp-content/uploads/sites/5/2017/10/4-mountain-rescue.jpg);
-  animation-delay: 10s; 
+  background-image: ../Dogs/cover.png;
 }
 .slideshow li:nth-child(3) { 
-  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8fVjASipV-kIZ2iW_nDsCdQ2LyuZWG_0Y--vcPEYrLE7tMTvGEw);
+  background-image: ../Dogs/klee_kai_puppy.jpg;
   animation-delay: 20s; 
 }
 .slideshow li:nth-child(4) { 
-  background-image: url(https://www.pets4homes.co.uk/images/classifieds/2013/06/20/338265/large/pedigree-golden-cocker-spaniel-for-stud-show-type-51c30c600bfb8.JPG);
+  background-image: ../Dogs/golden_retriever.jpg;
   animation-delay: 30s; 
 }
 .slideshow li:nth-child(5) { 
-  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb-cXSXyMaiMOeUSWXmsCySKLnHAVqCyScSTN98FcobRqafBKlqg);
+  background-image: ../Shih_tzu_SERP.jpg;
   animation-delay: 40s; 
 }
 
@@ -92,6 +91,7 @@
 	height: 100%;
 }
 
+/* The Modal (background) */
 .modal{
 	display : block;
 	position : fixed;
@@ -105,6 +105,59 @@
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     padding-top: 60px;
 }
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5px auto; /* 15% from the top and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+/*effect to button*/
+button:hover {
+    opacity: 0.8;
+}
+
+.register{
+	text-align: center;
+	padding-top: 16px;
+	color: #FFFFFF;
+}
+
+a:hover {
+    color: grey;
+    text-decoration: underline;
+}
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+
 
 
 
