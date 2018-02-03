@@ -10,7 +10,13 @@ let userSchema = new mongoose.Schema({
 	email: String,
 	username: String,
 	password: String,
-	address: String,
+	address: {
+		houseAddress: String,
+		city: String,
+		state: String,
+		zip: String,
+	},
+	url: String,
 	dogs: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Dog",
