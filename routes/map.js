@@ -9,7 +9,6 @@ router.get('/main', function(req, res) {
     res.render('maps', {
         gmapsCredential: credentials.gmaps,
         'authorized':false
-
     });
 });
 module.exports = router;

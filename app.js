@@ -46,7 +46,7 @@ let sockets = []
 io.on('connection', function(socket) {
     // console.log('a client connected.')
 
-    //socket
+    //socket login attempts.
     socket.on('LOGIN_ATTEMPT', function(user) {
         User.findOne({
             username: user.username,
@@ -65,6 +65,12 @@ io.on('connection', function(socket) {
         })
 
     });
+    socket.on('POSITION_RECEIVED',function(latLng){
+              //Note: latLng is a json object of :
+              //{lat: LATITUDE, lng: LONGITUDE};
+              let geospatial_query_result = "TODO: INSERT GEO QUERY RESULT HERE";
+              socket.emit('DOGS_NEAR_USER',geospatial_query_result);
+   })
 
     // Events:
 

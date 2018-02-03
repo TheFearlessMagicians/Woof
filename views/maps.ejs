@@ -27,6 +27,7 @@ function initMap() {
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
+            socket.emit('POSITION_RECEIVED',pos);
             var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 13,
             center: pos,
@@ -192,6 +193,18 @@ function initMap() {
    socket.on('userConnected',function(){
 
              //$(numUsersOnline).html();
+   });
+   socket.on('DOGS_NEAR_USER',function(dogs){
+             dogs.map(function(location, i) {
+                       return new google.maps.Marker({
+                          position: location,
+                          label: labels[i % labels.length]
+                       });
+             });
+             // Add a marker clusterer to manage the markers.
+             var markerCluster = new MarkerClusterer(map, markers,
+                {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+
    });
 
                   </script>
