@@ -1,10 +1,12 @@
 //Mongoose set up
 let mongoose = require("mongoose");
 
+//Passport set up 
+	passportLocalMongoose = require("passport-local-mongoose");
+
 //Schema set up
 let userSchema = new mongoose.Schema({
-	firstName: String,
-	lastName: String,
+	name: String,
 	nickName: String,
 	numberOfDogs: Number,
 	email: String,
@@ -26,5 +28,6 @@ let userSchema = new mongoose.Schema({
 		default: Date.now,
 	},
 });
+userSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model("User", userSchema);
