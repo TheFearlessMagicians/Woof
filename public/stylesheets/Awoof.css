@@ -1,14 +1,13 @@
-/*header CSS + animation */
 
-#landing-header
-{
-    position: relative;
-    z-index: 1;
 
-    padding-top: 40vh;
-
-    text-align: center;
+div .form-group{
+    margin-bottom: -2%;
+    margin-top: 0%;
 }
+
+
+
+
 
 #landing-header h1
 {
@@ -177,11 +176,12 @@
 input[type=text],
 input[type=password]
 {
+
     display: inline-block;
 
     box-sizing: border-box;
     width: 100%;
-    margin: 8px 0;
+    margin: 15px 0px;
     padding: 12px 20px;
 
     border: 1px solid #ccc;
