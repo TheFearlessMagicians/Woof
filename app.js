@@ -13,7 +13,7 @@ let express = require("express");
 	mongoose.connect("mongodb://localhost/Woof");
 
 //Routes
-app.use(express.static('public'));
+app.use('/public',express.static(__dirname + '/public'));
 app.use(require('./routes/dogOwners'));
 app.use(require('./routes/landing'));
 app.use(require('./routes/login'));
@@ -23,7 +23,6 @@ app.use(require('./routes/map'));
 app.set('port',serverPort);
 app.set('view engine', 'ejs');
 app.set('views', 'views');
-
 
 
 //server listen:
