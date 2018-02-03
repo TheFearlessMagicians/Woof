@@ -17,7 +17,7 @@ let express = require("express");
 	Dog = require("./models/dog");
 	User = require("./models/user");
 
-//Seed file set up
+//Seed file set up and run!
 	seed = require("./models/seed");
 	seed();
 
@@ -38,10 +38,6 @@ app.set('sockets',[]);
 let server = app.listen(app.get('port'), function() {
   console.log('Listening on port ' + app.get('port'));
 });
-
-
-
-
 
 
 //*************SOCKET code*******************
