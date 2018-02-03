@@ -2,6 +2,7 @@ let credentials = require('../credentials/credentials.js');
 express = require('express');
 router = express.Router({ mergeParams: true });
 email = require('../scripts/email').expressInterest;
+User = require('../models/user');
 
 
 router.use(bodyParser.json());
@@ -13,10 +14,17 @@ router.post('/expressinterest/:id', function(req, res) {
 
 })
 router.get('/user/:id', function(req, res) {
-    res.render('userPage', {
-        id: req.params.id //TODO
-
-    });
+	User.findById(req.params.id, function(error, foundUser){
+		if (error){
+			console.log('UNABLE TO FIND USER');
+		} else {
+			res.render('userPage',
+				{
+					user: foundUser,
+				}
+			);
+		}
+	});
 
 });
 module.exports = router;
