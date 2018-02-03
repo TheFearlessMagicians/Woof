@@ -30,14 +30,14 @@
 	                    	</div>
 	                    </div>
 
-	                    <div class="progress progress-line-primary user-rating">
+                   <!-- <div class="progress progress-line-primary user-rating">
 	                    	<div class="progress-bar progress-bar-success" style="width: 65%">
 	                            <span class="sr-only">65% Complete (success)</span>
 	                        </div>
 	                        <div class="progress-bar progress-bar-danger" style="width: 35%">
 	                            <span class="sr-only">35% Complete (danger)</span>
 	                        </div>
-	                    </div>
+                        </div>-->
 
 					</div>
 				</div>
@@ -84,7 +84,7 @@
                           Curabitur lacinia, Dapibus
                         </small>
                       </blockquote>
-
+                    <!--
                       <blockquote>
                         <p>
                           Phasellus neque eros, laoreet sit amet enim ut, vestibulum malesuada sapien. Mauris ultrices sodales sapien a venenatis. Ut gravida nulla at mi efficitur, in laoreet sapien pharetra. Nam id purus elementum, cursus nisl ac, vehicula ligula. Vestibulum ac egestas augue.
@@ -102,6 +102,7 @@
                           Mauris Semper, Rhoncus
                         </small>
                       </blockquote>
+            -->
                     </div>
 
                   </div>
@@ -154,12 +155,18 @@
                               <span class="input-group-addon">
                                 <i class="material-icons">message</i>
                               </span>
-                              <textarea placeholder="Message..." class="form-control" rows="3"></textarea>
+                              <textarea placeholder="Message..." class="form-control" rows="3" id="messageContainer"></textarea>
                             </div>
 
                           </div>
                           <div class="footer text-center">
-                            <a href="#" class="btn btn-simple btn-primary btn-lg text-blue">Send message</a>
+                            <a href="#" class="btn btn-simple btn-primary btn-lg text-blue" id= 'sendMessage'>Send message</a>
+                            <script>
+                                        $('a#sendMessage').on('click',function(){
+                                                  id = '1'//TODO GET THE OWNERS ID HERE.
+                                                  $.post(`/expressinterest/${id}`,{'message':$('textarea#messageContainer').html()});
+                                        })
+                            </script>
                           </div>
                         </form>
                       </div>

@@ -133,7 +133,7 @@
   margin-top: -2px;
 }
 .messages .message .text_wrapper .text {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 300;
 }
 
@@ -181,7 +181,7 @@
   background-color: #fff;
 }
 .bottom_wrapper .send_message .text {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 300;
   display: inline-block;
   line-height: 48px;
