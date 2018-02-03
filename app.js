@@ -7,6 +7,7 @@ let express = require("express");
 	bodyParser = require("body-parser");
 	app.use(bodyParser.urlencoded({extended: true}));
 
+
 //Mongoose set up
 	mongoose = require("mongoose");
 	mongoose.connect("mongodb://localhost/Woof");
@@ -17,8 +18,11 @@ app.use(require('./routes/index'));
 app.use(require('./routes/login'));
 app.use(require('./routes/map'));
 
-//connection settings
+//app settings
 app.set('port',serverPort);
+app.set('view engine', 'ejs');
+app.set('views', 'app/views');
+
 
 
 //server listen:
