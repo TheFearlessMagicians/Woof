@@ -14,18 +14,16 @@ router.post('/expressinterest/:id', function(req, res) {
 
 })
 router.get('/user/:id', function(req, res) {
-	User.findById(req.params.id).populate('dogs').exec(function(error, foundUser){
-		if (error){
-			console.log('UNABLE TO FIND USER');
-		} else {
-			console.log(foundUser);
-			res.render('userPage',
-				{
-					user: foundUser,
-				}
-			);
-		}
-	});
+    User.findById(req.params.id).populate('dogs').exec(function(error, foundUser) {
+        if (error) {
+            console.log('UNABLE TO FIND USER');
+        } else {
+            console.log(foundUser);
+            res.render('userPage', {
+                user: foundUser,
+            });
+        }
+    });
 
 });
 module.exports = router;
