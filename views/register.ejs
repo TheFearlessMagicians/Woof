@@ -117,7 +117,7 @@
         let numberOfDogs = Number(document.getElementById('nDogs').value);
         console.log(`insert dogs form called back. ${numberOfDogs} dogs`);
 
-        $('ul ').html('');
+        $('div.dogStyling').remove();
 
         for (let x = 1; x <= numberOfDogs; x++) {
             $(`div #doggoNumber`).append(` <div class= "dogStyling" id="dogForm_${x}">
@@ -126,10 +126,6 @@
         }
     };
 
-    for (let x = 1; x <= numberOfDogs; x++) {
-        $(`div #doggoNumber`).append(` <div id="dogForm_${x}">
-                      <h2>Dog ${x} </h2>
-             <%- include ./partials/dogForm %> </div>`);
-    }
-    };
+
+    
     </script>
