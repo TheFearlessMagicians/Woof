@@ -18,13 +18,14 @@ passport.use(new LocalStratergy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-
-router.post('/login', function(req, res) {
-    let password = ''; //TODO HANDLE password post request.
-
-    res.render('login', {});
-    //TODO: register page.
+router.get('/404', function(req, res) {
+    res.send("Failed to Log in", 404);
 });
+
+router.post('/login', passport.authenticate('local', {
+    successRedirect: "/main?_WilsonFixTHis",
+    failureRedirect: "/404",
+}), function(req, res) {});
 
 router.get('/register', function(req, res) {
     res.render('register', {});
@@ -32,7 +33,7 @@ router.get('/register', function(req, res) {
 
 
 router.post("/register", function(req, res) {
-    User.register(new User({username: req.body.username}), req.body.password, function(error, newlyCreatedUser) {
+    User.register(new User({ username: req.body.username }), req.body.password, function(error, newlyCreatedUser) {
         if (error) {
             console.log("COULD NOT REGISTER USER IN THE POST ROUTE");
             res.render("register");
@@ -46,7 +47,7 @@ router.post("/register", function(req, res) {
                 newlyCreatedUser.numberOfDogs = user.numberOfDogs;
                 newlyCreatedUser.url = "/user/" + newlyCreatedUser.id;
                 newlyCreatedUser.save(function(error, savedUser) {
-                console.log("USER REGISTERED");
+                    console.log("USER REGISTERED");
                     res.render('maps', {
                         gmapsCredential: credentials.gmaps,
                         'authorized': true
