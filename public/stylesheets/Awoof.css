@@ -1,5 +1,15 @@
 /*header CSS + animation */
 
+h2{
+    margin-bottom: 2%;
+    margin-left:  1.2%;
+}
+
+.form-group {
+    margin-top: -2%;
+    margin-bottom: -2%;
+}
+
 #landing-header
 {
     position: relative;

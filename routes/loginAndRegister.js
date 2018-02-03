@@ -2,6 +2,7 @@ let express = require('express');
 	router = express.Router({ mergeParams: true });
 	User = require("../models/user")
 
+
 router.post('/login', function(req, res) {
 	let password = ''; //TODO HANDLE password post request.
 
@@ -15,16 +16,20 @@ router.get('/register', function(req, res) {
     });
 });
 
+
 router.post("/register", function (req,res){
 	User.create(req.body.user, function (error, newlyCreatedUser){
 		if (error){
 			console.log("COULD NOT REGISTER USER IN THE POST ROUTE");
 		} else {
+
 			res.render('/main',
+
                                         {
                                         gmapsCredential: credentials.gmaps,
                                         'authorized':true}
                               );
+
 		}
 	});
 });
