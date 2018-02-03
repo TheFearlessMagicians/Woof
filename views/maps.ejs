@@ -1,6 +1,6 @@
 <% include ./partials/header %>
     <div class="container" id="page">
-        <% if(authorized == true){ %>
+        <% if(authorized != true){ %>
             <!-- This is for Register access. Separate register page redirects to this map.ejs where login isn't displayed. -->
             <% include ./partials/login %>
                 <% } %>
@@ -8,13 +8,15 @@
                         <div class="container col-sm-6" style="width: 50%;" id="mapContainer">
                             <div id="map"></div>
                             <link rel= "stylesheet" href="public/stylesheets/dogPopupStyle.css">
-
+                             <link rel= "stylesheet" href="public/stylesheets/chatStyle.css">
                               <script src = "/public/dogPopup.js"></script>
+                              <script src = "/public/chatScript.js"></script>
+                              <script src = "/public/stylesheets/gmapsStyle.js"></script>
                             <script>
                             //dummy data.
                             function addDummyDogs(centerLatLng) {
                                 let locations = [];
-                                for (let i = 0; i < 10; i++)
+                                for (let i = 0; i < 20; i++)
                                     locations.push({
                                         'lat': centerLatLng['lat'] + Math.random() * 0.05,
                                         'lng': centerLatLng['lng'] + Math.random() * 0.05
@@ -37,92 +39,7 @@
                                         var map = new google.maps.Map(document.getElementById('map'), {
                                             zoom: 13,
                                             center: pos,
-                                            styles: [{
-                                                    "featureType": "all",
-                                                    "elementType": "all",
-                                                    "stylers": [{
-                                                            "saturation": "32"
-                                                        },
-                                                        {
-                                                            "lightness": "-3"
-                                                        },
-                                                        {
-                                                            "visibility": "on"
-                                                        },
-                                                        {
-                                                            "weight": "1.18"
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "featureType": "administrative",
-                                                    "elementType": "labels",
-                                                    "stylers": [{
-                                                        "visibility": "on"
-                                                    }]
-                                                },
-                                                {
-                                                    "featureType": "landscape",
-                                                    "elementType": "labels",
-                                                    "stylers": [{
-                                                        "visibility": "on"
-                                                    }]
-                                                },
-                                                {
-                                                    "featureType": "landscape.man_made",
-                                                    "elementType": "all",
-                                                    "stylers": [{
-                                                            "saturation": "-70"
-                                                        },
-                                                        {
-                                                            "lightness": "14"
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "featureType": "poi",
-                                                    "elementType": "labels",
-                                                    "stylers": [{
-                                                        "visibility": "on"
-                                                    }]
-                                                },
-                                                {
-                                                    "featureType": "road",
-                                                    "elementType": "labels",
-                                                    "stylers": [{
-                                                        "visibility": "on"
-                                                    }]
-                                                },
-                                                {
-                                                    "featureType": "transit",
-                                                    "elementType": "labels",
-                                                    "stylers": [{
-                                                        "visibility": "on"
-                                                    }]
-                                                },
-                                                {
-                                                    "featureType": "water",
-                                                    "elementType": "all",
-                                                    "stylers": [{
-                                                            "saturation": "100"
-                                                        },
-                                                        {
-                                                            "lightness": "-14"
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "featureType": "water",
-                                                    "elementType": "labels",
-                                                    "stylers": [{
-                                                            "visibility": "on"
-                                                        },
-                                                        {
-                                                            "lightness": "12"
-                                                        }
-                                                    ]
-                                                }
-                                            ]
+                                            styles: gmapsStyle
                                         });
                                         console.log('creating a map here.');
                                         // Create an array of alphabetical characters used to label the markers.
@@ -132,6 +49,7 @@
                                         // Note: The code uses the JavaScript Array.prototype.map() method to
                                         // create an array of markers based on a given "locations" array.
                                         // The map() method here has nothing to do with the Google Maps API.
+                                        // --------------------DUMMY --------------------------------
                                         var markers = addDummyDogs(pos).map(function(location, i) {
                                             return new google.maps.Marker({
                                                 position: location,
@@ -141,6 +59,7 @@
 
                                         // Add a marker clusterer to manage the markers.
                                         var markerCluster = new MarkerClusterer(map, markers, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
+
                                         markers.forEach((marker)=>{google.maps.event.addListener(marker, 'click', function() {
                                                   var infowindow = new google.maps.InfoWindow({
                                                                content:  getdogPopupString('doggoName','/public/Dogs/samoyed-puppy.jpg','/dog/1','/user/1')
@@ -181,25 +100,59 @@
 
                                 //$(numUsersOnline).html();
                             });
+                            // -------------------REAL CODE FOR MAP UPDATING ----------------------------------//
                             socket.on('DOGS_NEAR_USER', function(dogs) {
-                               var markers= dogs.map(function(location, i) {
+                               let mrkrs= dogs.map(function(dog, i) {
                                     return new google.maps.Marker({
-                                        position: location,
-                                        label: labels[i % labels.length]
+                                        position: dog.location,//TODO: DIFFERENT FORMAT.
+                                        label: labels[i % labels.length],
+                                        dogName:dog.name,
+                                        dogPicUrl:dog.picURL,
+                                        dogUrl: dog.url,
+                                        ownerUrl:dog.owner // TODO : get owner uri.
                                     });
                                 });
                                 //
                                 // Add a marker clusterer to manage the markers.
-                                var markerCluster = new MarkerClusterer(map, markers, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-                                google.maps.event.addListener(marker, 'click', function() {
-                                  infowindow.setContent(this.content);
+                                var markerCluster = new MarkerClusterer(map, mrkrs, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
+                                mrkrs.forEach((marker)=>{google.maps.event.addListener(marker, 'click', function() {
+                                          var infowindow = new google.maps.InfoWindow({
+                                                       content:  getdogPopupString(marker.dogName,marker.dogPicUrl,marker.dogUrl,marker.ownerUrl)
+                                                    });
+
                                   infowindow.open(map, this);
-                                });
+                                })});
                             });
                             </script>
                         </div>
                         <div class="container col-sm-6" style="width:50%;">
-                            <h2> realtime chat app.</h2>
+
+                            <div class="chat_window">
+                                  <div class="top_menu">
+                                      <!--<div class="buttons">
+                                          <div class="button close"></div>
+                                          <div class="button minimize"></div>
+                                          <div class="button maximize"></div>
+                                </div>-->
+                                      <div class="title">Chat</div>
+                                  </div>
+                                  <ul class="messages"></ul>
+                                  <div class="bottom_wrapper clearfix">
+                                      <div class="message_input_wrapper"><input class="message_input" placeholder="Type your message here..." /></div>
+                                      <div class="send_message">
+                                          <div class="icon"></div>
+                                          <div class="text">Send</div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="message_template">
+                                  <li class="message">
+                                      <div class="avatar"></div>
+                                      <div class="text_wrapper">
+                                          <div class="text"></div>
+                                      </div>
+                                  </li>
+                              </div>
                         </div>
                     </div>
     </div>
