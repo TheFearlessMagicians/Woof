@@ -3,7 +3,7 @@ return `<div class="container">
 	<div class="row">
 		<div class="col-lg-3 col-sm-6">
 
-            <div class="card hovercard">
+            <div class="card hovercard" style="overflow: hidden; margin: 0 auto;">
                 <div class="cardheader">
 
                 </div>
