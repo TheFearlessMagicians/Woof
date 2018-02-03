@@ -1,4 +1,5 @@
 var express = require('express');
+var email = require('../scripts/email');
 var router = express.Router({mergeParams:true});
 
 
