@@ -28,11 +28,7 @@ app.set('port',serverPort);
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
-
-
-
 //Server listen:
-
-var server = app.listen(app.get('port'), function() {
+let server = app.listen(app.get('port'), function() {
   console.log('Listening on port ' + app.get('port'));
 });
