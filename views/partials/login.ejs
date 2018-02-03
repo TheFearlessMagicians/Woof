@@ -15,8 +15,25 @@
   		</div>
 	</form>
 </div>
+
+<script src = "/socket.io/socket.io.js"> </script>
+
 <script>
+
+
 $(`button #login`).on('click', function(event){
-	$.post("/login", {username: document.getElementById('username').value, password: document.getElementById('password').value})
+          var socket = io.connect("localhost:8000");
+          socket.on('connect', function() {
+                    socket.emit('LOGIN_ATTEMPT',{'username': document.getElementById('username').value,
+                                                                                'password': document.getElementById('password').value});
+         });
+         socket.on('LOGIN_RESPONSE',(result)=>{
+                   if (result.authorized == true){
+                             //TODO HANIF: handle what happens when user enter correct pw here.
+                   }else{
+                               //TODO HANIF: handle what happens when user enter WRONG pw here.
+                   }
+         })
+
 });
 </script>

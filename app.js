@@ -34,7 +34,7 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.set('sockets',[]);
 
-//Server listen:
+//Servloger listen:
 let server = app.listen(app.get('port'), function() {
   console.log('Listening on port ' + app.get('port'));
 });
@@ -44,13 +44,20 @@ let server = app.listen(app.get('port'), function() {
 io.attach(server);
 let sockets = []
 io.on('connection', function(socket) {
-    console.log('a client connected.')
-    let temp = app.get('sockets');
-    temp.push(socket);
-    app.set('sockets',temp);
-    console.log(`${app.get('sockets').length} players`);
+   // console.log('a client connected.')
 
-    //socket.on('')
+    //socket
+    socket.on('LOGIN_ATTEMPT',function(user){
+             if(/*TODO: AUTHENTICATE */){
+                       let temp = app.get('sockets');
+                     temp.push(socket);
+                     app.set('sockets',temp);
+                     console.log(`${app.get('sockets').length} players`);
+                     socket.emit('LOGIN_RESPONSE',{'authorized':true});
+           }else{
+                     socket.emit('LOGIN_RESPONSE',{'authorized':false});
+           }
+   });
 
     // Events:
 
