@@ -1,5 +1,5 @@
 
-#NOTE TO DEVELOPERS
+# NOTE TO DEVELOPERS
 
 Make two files that contain your credentials (It is gitignored.):
 
