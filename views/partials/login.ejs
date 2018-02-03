@@ -30,11 +30,14 @@ $(`button #login`).on('click', function(event){
          });
          socket.on('LOGIN_RESPONSE',(result)=>{
                    if (result.authorized == true){
+                             $('div#login').css('display','none');
                              //TODO HANIF: handle what happens when user enter correct pw here.
                    }else{
                              if ( result.userNotFound == true){
+                                       alert('No such user.')
                                         //TODO HANIF: handle what happens when user  not found.
                              }else{
+                                       alert('password incorrect.')
                                         //TODO HANIF: handle what happens when user enter WRONG pw here.
                              }
 
