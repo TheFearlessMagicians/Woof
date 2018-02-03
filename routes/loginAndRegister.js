@@ -2,6 +2,22 @@ let express = require('express');
 router = express.Router({ mergeParams: true });
 User = require("../models/user")
 
+//AUTHENTICATION
+let passport = require("passport");
+LocalStratergy = require("passport-local");
+
+//PASSPORT CONFIGURATION
+app.use(require("express-session")({
+    secret: "I wanna go poopie",
+    resave: false,
+    saveUninitialized: false,
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStratergy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 
 router.post('/login', function(req, res) {
     let password = ''; //TODO HANDLE password post request.
@@ -16,15 +32,25 @@ router.get('/register', function(req, res) {
 
 
 router.post("/register", function(req, res) {
-    User.create(req.body.user, function(error, newlyCreatedUser) {
+    User.register(new User({username: req.body.username}), req.body.password, function(error, newlyCreatedUser) {
         if (error) {
             console.log("COULD NOT REGISTER USER IN THE POST ROUTE");
+            res.render("register");
         } else {
-            newlyCreatedUser.url = "/user/" + newlyCreatedUser.id;
-            newlyCreatedUser.save(function(error, savedUser) {
-                res.render('maps', {
-                    gmapsCredential: credentials.gmaps,
-                    'authorized': true
+            passport.authenticate("local")(req, res, function() {
+                let user = req.body.user;
+                newlyCreatedUser.name = user.name;
+                newlyCreatedUser.nickname = user.nickname;
+                newlyCreatedUser.address = user.address;
+                newlyCreatedUser.email = user.email;
+                newlyCreatedUser.numberOfDogs = user.numberOfDogs;
+                newlyCreatedUser.url = "/user/" + newlyCreatedUser.id;
+                newlyCreatedUser.save(function(error, savedUser) {
+                console.log("USER REGISTERED");
+                    res.render('maps', {
+                        gmapsCredential: credentials.gmaps,
+                        'authorized': true
+                    });
                 });
             });
         }

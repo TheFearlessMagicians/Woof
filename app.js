@@ -35,6 +35,23 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.set('sockets', []);
 
+// //AUTHENTICATION
+// let passport = require("passport");
+// LocalStratergy = require("passport-local");
+
+// //PASSPORT CONFIGURATION
+// app.use(require("express-session")({
+//         secret: "I wanna go poopie!",
+//         resave: false,
+//         saveUninitialized: false,
+//     }
+// ));
+// app.use(passport.initialize());
+// app.use(passport.session());
+// passport.use(new LocalStratergy(User.authenticate()));
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
+
 //Servloger listen:
 let server = app.listen(app.get('port'), function() {
     console.log('Listening on port ' + app.get('port'));
@@ -66,13 +83,15 @@ io.on('connection', function(socket) {
         })
 
     });
-    socket.on('POSITION_RECEIVED',function(latLng){
-              //Note: latLng is a json object of :
-              //{lat: LATITUDE, lng: LONGITUDE};
-              let geospatial_query_result = "TODO: INSERT GEO QUERY RESULT HERE";
-              socket.emit('DOGS_NEAR_USER',geospatial_query_result);
-   })
+    socket.on('POSITION_RECEIVED', function(latLng) {
+        //Note: latLng is a json object of :
+        //{lat: LATITUDE, lng: LONGITUDE};
+        let geospatial_query_result = "TODO: INSERT GEO QUERY RESULT HERE";
+        socket.emit('DOGS_NEAR_USER', geospatial_query_result);
+    })
 
     // Events:
 
 });
+
+
