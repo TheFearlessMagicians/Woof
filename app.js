@@ -48,15 +48,23 @@ io.on('connection', function(socket) {
 
     //socket
     socket.on('LOGIN_ATTEMPT',function(user){
-             if(/*TODO: AUTHENTICATE */){
-                       let temp = app.get('sockets');
-                     temp.push(socket);
-                     app.set('sockets',temp);
-                     console.log(`${app.get('sockets').length} players`);
-                     socket.emit('LOGIN_RESPONSE',{'authorized':true});
-           }else{
-                     socket.emit('LOGIN_RESPONSE',{'authorized':false});
-           }
+           User.findOne({
+                     username: user.username,
+           }, function (error, foundUser){
+                     if(error){
+                                socket.emit('LOGIN_RESPONSE',{'authorized':false,'userNotFound':true});
+                     }
+                     else if(foundUser.password == user.password){
+                               let temp = app.get('sockets');
+                             temp.push(socket);
+                             app.set('sockets',temp);
+                             console.log(`${app.get('sockets').length} players`);
+                             socket.emit('LOGIN_RESPONSE',{'authorized':true});
+                   }else{
+                             socket.emit('LOGIN_RESPONSE',{'authorized':false,'userNotFound':false});
+                   }
+           })
+
    });
 
     // Events:

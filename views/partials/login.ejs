@@ -31,7 +31,12 @@ $(`button #login`).on('click', function(event){
                    if (result.authorized == true){
                              //TODO HANIF: handle what happens when user enter correct pw here.
                    }else{
-                               //TODO HANIF: handle what happens when user enter WRONG pw here.
+                             if ( result.userNotFound == true){
+                                        //TODO HANIF: handle what happens when user  not found.
+                             }else{
+                                        //TODO HANIF: handle what happens when user enter WRONG pw here.
+                             }
+
                    }
          })
 
