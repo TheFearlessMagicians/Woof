@@ -20,11 +20,11 @@
                                     <input type="text" placeholder="Enter City Name Here.." class="form-control" name="user[address][city]">
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group" style="float :left; width:70% ">
+                                    <div class="form-group" style="float :left; width:60% ">
                                         <label style="margin-bottom: -1.5%;">Zip</label>
                                         <input type="text" placeholder="Enter Zip Code Here.." class="form-control" name="user[address][zip]">
                                     </div>
-                                    <div class="form-group" style="float :left; width: 30%; margin: 20 0 10 0">
+                                    <div class="form-group" style="float :left; width: 20%; margin: 20 0 0 0;">
                                         <label style="margin-top: -8%, margin-bottom: 2%; ">State &nbsp; &nbsp;</label>
                                         <select class="selectpicker" name="user[address][state]">
                                             <option value="AL">Alabama</option>
@@ -101,11 +101,18 @@
     </div>
 <% include ./partials/footer %>
     <script>
-    function insertDogsForm() {
-        let numberOfDogs = Number(document.getElementById('nDogs').value);
-        console.log(`insert dogs form called back. ${numberOfDogs} dogs`);
+function insertDogsForm(){
+	let numberOfDogs = Number(document.getElementById('nDogs').value);
+	console.log(`insert dogs form called back. ${numberOfDogs} dogs`);
 
-        $('ul ').html('');
+          $('ul ').html('');
+
+          for(let x = 1; x <= numberOfDogs; x++){
+		$(`div #doggoNumber`).append(` <div class= "dogStyling" id="dogForm_${x}">
+                              <h2>Dog ${x} </h2>
+                     <%- include ./partials/dogForm %> </div>`);
+           }
+ };
 
         for (let x = 1; x <= numberOfDogs; x++) {
             $(`div #doggoNumber`).append(` <div id="dogForm_${x}">
