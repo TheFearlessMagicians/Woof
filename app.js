@@ -25,7 +25,7 @@ let express = require("express");
 app.use('/public',express.static(__dirname + '/public'));
 app.use(require('./routes/dogOwners'));
 app.use(require('./routes/landing'));
-app.use(require('./routes/login'));
+app.use(require('./routes/loginAndRegister'));
 app.use(require('./routes/map'));
 
 //App settings
