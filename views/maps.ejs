@@ -169,11 +169,29 @@ function initMap() {
 //        infoWindow.open(map);
       //}
 }
-          
+
                   </script>
                   <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
                   </script>
                   <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%- gmapsCredential %>&callback=initMap">
+                  </script>
+                  <script src = "/socket.io/socket.io.js"> </script>
+
+
+ <script >
+    //--------------Socket Script ---------------------------//
+    var numUsersOnline= "h2";
+
+    var socket = io.connect("localhost:8000");
+    socket.on('connect', function() {
+
+   });
+
+   socket.on('userConnected',function(){
+
+             //$(numUsersOnline).html();
+   });
+
                   </script>
 	</div>
 </div>
