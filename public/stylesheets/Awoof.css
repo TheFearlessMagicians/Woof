@@ -5,9 +5,12 @@ div .form-group{
     margin-top: 0%;
 }
 
-
-
-
+#landing-header {
+  z-index: 1;
+  position: relative;
+  text-align: center;
+  padding-top: 40vh;
+}
 
 #landing-header h1
 {
