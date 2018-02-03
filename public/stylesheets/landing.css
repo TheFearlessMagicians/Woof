@@ -1,0 +1,56 @@
+#landing-header {
+  z-index: 1;
+  position: relative;
+  text-align: center;
+  padding-top: 40vh;
+}
+
+#landing-header h1 {
+  color: #fff;
+}
+
+.slideshow { 
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.slideshow li { 
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  z-index: 0;
+  animation: imageAnimation 50s linear infinite; 
+}
+
+.slideshow li:nth-child(1) { 
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmDiN44q3kGa3Nu-NmxsmPF7keyNDmMwGc3GD0XcHknu8wXxq4) 
+}
+.slideshow li:nth-child(2) { 
+  background-image: url(https://honesttopaws.com/wp-content/uploads/sites/5/2017/10/4-mountain-rescue.jpg);
+  animation-delay: 10s; 
+}
+.slideshow li:nth-child(3) { 
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8fVjASipV-kIZ2iW_nDsCdQ2LyuZWG_0Y--vcPEYrLE7tMTvGEw);
+  animation-delay: 20s; 
+}
+.slideshow li:nth-child(4) { 
+  background-image: url(https://www.pets4homes.co.uk/images/classifieds/2013/06/20/338265/large/pedigree-golden-cocker-spaniel-for-stud-show-type-51c30c600bfb8.JPG);
+  animation-delay: 30s; 
+}
+.slideshow li:nth-child(5) { 
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb-cXSXyMaiMOeUSWXmsCySKLnHAVqCyScSTN98FcobRqafBKlqg);
+  animation-delay: 40s; 
+}
