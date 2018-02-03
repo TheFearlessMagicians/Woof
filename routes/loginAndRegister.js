@@ -23,7 +23,8 @@ router.post("/register", function (req,res){
 			console.log("COULD NOT REGISTER USER IN THE POST ROUTE");
 		} else {
 
-			res.render('/map',
+			res.render('/main',
+
                                         {
                                         gmapsCredential: credentials.gmaps,
                                         'authorized':true}
