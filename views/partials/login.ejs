@@ -24,6 +24,7 @@
 $(`button #login`).on('click', function(event){
           var socket = io.connect("localhost:8000");
           socket.on('connect', function() {
+                    //socket authentication for login attempts. Post request for register.
                     socket.emit('LOGIN_ATTEMPT',{'username': document.getElementById('username').value,
                                                                          'password': document.getElementById('password').value});
          });

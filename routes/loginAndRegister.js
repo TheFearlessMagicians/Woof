@@ -7,20 +7,24 @@ router.post('/login', function(req, res) {
 
     res.render('login', {});
     //TODO: register page.
-}
+});
 
 router.get('/register', function(req, res) {
     res.render('register', {
 
     });
-}); 
+});
 
 router.post("/register", function (req,res){
 	User.create(req.body.user, function (error, newlyCreatedUser){
 		if (error){
 			console.log("COULD NOT REGISTER USER IN THE POST ROUTE");
 		} else {
-			res.redirect()
+			res.render('/map',
+                                        {
+                                        gmapsCredential: credentials.gmaps,
+                                        'authorized':true}
+                              );
 		}
 	});
 });

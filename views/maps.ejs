@@ -1,8 +1,10 @@
 <% include ./partials/header %>
 
 <div class = "container" id = "page">
+<% if(authorized != true){ %>
+          <!-- This is for Register access. Separate register page redirects to this map.ejs where login isn't displayed. -->
   <% include ./partials/login %>
-
+<% } %>
   <div class = "container" id = "mapContainer">
             <div id="map"></div>
          <script>
