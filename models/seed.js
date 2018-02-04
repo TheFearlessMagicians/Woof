@@ -11,7 +11,9 @@ function seed() {
     }, function(error, foundUsers) {
         if (error) {
             console.log(error);
-        } else if (foundUsers.length == 0) {
+        } else {
+            User.collection.drop();
+            Dog.collection.drop();
             seedDogs = {
                 "Paris": {
                     age: 13,
@@ -27,7 +29,7 @@ function seed() {
                     isTherapyDog: false,
                     behaviourWithStrangers: "affectionate & playful",
                     description: "The Dachshund, meaning \"badger dog\" in German, is a lively breed with a friendly personality and keen sense of smell. Known for their long and low bodies, they are eager hunters that excel in both above- and below-ground work. One of the most popular breeds according to AKC® Registration Statistics, they come in three different coat varieties (Smooth, Wirehaired or Longhaired) and can be miniature or standard size.",
-                    location: [-118.243683, 34.052235],
+                    location: [34.052235, -118.243683],
                 },
                 "Babee": {
                     age: 11,
@@ -57,6 +59,9 @@ function seed() {
                             breed: key.breed,
                             age: key.age,
                             owner: createdUser,
+                            loc: {
+                                coordinates: key.location
+                            }
                         }, function(error, createdDog) {
                             if (error) {
                                 console.log("UNABLE CREATE DOG WHEN SEEDING");
