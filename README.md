@@ -26,7 +26,8 @@ After that,
 $ npm install;
 $ mongod;
 $ npm run dev
-```d
+```
+
 ## Notice
 To run with google maps, create a directory in the root called /credentials with a file credentials.js in it with all your API key's needed. This includes Google Maps API key, and the mailgun API key (for email notifications of users).
 ```sh
