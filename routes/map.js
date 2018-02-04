@@ -8,12 +8,12 @@ router.get('/main', function(req, res) {
     if (req.user) {
         res.render('maps', {
             gmapsCredential: credentials.gmaps,
-            'authorized': true
+            'authorized': true,
         });
     } else {
         res.render('maps', {
             gmapsCredential: credentials.gmaps,
-            'authorized': false
+            'authorized': false,
         });
     }
 });

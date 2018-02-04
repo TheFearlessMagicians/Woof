@@ -29,6 +29,12 @@ app.use(require('./routes/loginAndRegister'));
 app.use(require('./routes/map'));
 app.use(require('./routes/dog'));
 
+//req.user avalaible to all routes
+app.use(function(req,res,next){
+  res.locals.currentUser = req.user;
+  next();
+});
+
 //App settings
 app.set('port', serverPort);
 app.set('view engine', 'ejs');
