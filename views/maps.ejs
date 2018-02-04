@@ -2,7 +2,14 @@
     <div class="container" id="page">
 
         <% if(authorized == true){ %>
-        <form align="right" name="Logout" method="get" action="/logout">
+        <div class="container" id="loading">
+        <div class="container" id="loading-content">
+              <img src="/public/loading.gif" alt="Loading" title="Loading" />
+               <!-- loading gif for the map-->
+        </div>
+      </div>
+
+        <form align="right" method="get" action="/logout">
             <label class="logoutLblPos">
                 <input name="logoutButton" type="submit" id="logoutButton" value="Log out!">
             </label>
@@ -12,10 +19,7 @@
                     <div class="container col-sm-12">
                         <div class="container col-sm-6" style="width: 50%;" id="mapContainer">
                             <div id="map">
-                            <div id="loading">
-                                       <img src="/public/loading.gif" alt="Loading" title="Loading" style="margin:0 auto;" />
-                                        <!-- loading gif for the map-->
-                            </div></div>
+                            </div>
                             <link rel= "stylesheet" href="public/stylesheets/dogPopupStyle.css">
                              <link rel= "stylesheet" href="public/stylesheets/chatStyle.css">
                               <script src = "/public/dogPopup.js"></script>
@@ -79,7 +83,8 @@
 
                                         });
                                         google.maps.event.addListener(map, 'tilesloaded', function(){
-                                              document.getElementById('loading').innerHTML = '';
+                                              //document.getElementById('loading').innerHTML = '';
+                                              $(`#loading`).css("display", "none");
                                         });
 
 
@@ -111,6 +116,7 @@
                             socket.on('connect', function() {
 
                             });
+
 
                             socket.on('userConnected', function() {
 
