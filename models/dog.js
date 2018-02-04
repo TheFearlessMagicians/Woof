@@ -20,6 +20,7 @@ let dogSchema = new mongoose.Schema({
         default: Date.now,
     },
     delta: Number,
+    img: String,
     url: String,
 });
 
