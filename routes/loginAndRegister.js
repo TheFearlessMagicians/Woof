@@ -4,26 +4,24 @@ User = require("../models/user")
 
 //AUTHENTICATION
 let passport = require("passport");
-LocalStratergy = require("passport-local");
-
 //PASSPORT CONFIGURATION
-app.use(require("express-session")({
-    secret: "I wanna go poopie",
-    resave: false,
-    saveUninitialized: false,
-}));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(function(req, res, next) {
-    res.locals.currentUser = req.user;
-    next();
-});
-passport.use(new LocalStratergy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// app.use(require("express-session")({
+//     secret: "I wanna go poopie",
+//     resave: false,
+//     saveUninitialized: false,
+// }));
+// app.use(passport.initialize());
+// app.use(passport.session());
+// app.use(function(req, res, next) {
+//     res.locals.currentUser = req.user;
+//     next();
+// });
+// passport.use(new LocalStratergy(User.authenticate()));
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 
 router.get('/login', function(req, res) {
-    res.render('login');
+    res.render('login', {currentUser: req.user});
 });
 
 router.post('/login', passport.authenticate('local', {
@@ -37,7 +35,7 @@ router.get('/logout', function(req, res) {
 });
 
 router.get('/register', function(req, res) {
-    res.render('register', {});
+    res.render('register', {currentUser: req.user});
 });
 
 

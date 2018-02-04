@@ -6,7 +6,7 @@ User = require('../models/user');
 
 
 router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({ extended: false }));
+router.use(bodyParser.urlencoded({ extended: true }));
 
 router.post('/expressinterest/:id', function(req, res) {
     let sender = req.params.id;
@@ -24,6 +24,7 @@ router.get('/user/:id', function(req, res) {
             console.log(foundUser);
             res.render('userPage', {
                 user: foundUser,
+                currentUser: req.user,
             });
         }
     });
