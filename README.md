@@ -5,7 +5,7 @@ This is Woof. It is Wilson's, Varun's and Hanif's HackUCI 2018 project submissio
 Woof is an app for dog owners and dog lovers to connect with one another.
 ![Our app image](https://github.com/TheFearlessMagicians/Woof/blob/master/public/woof.png)
 You can chat with dog owners and meet up with them anytime, anywhere!
-
+![Our app image](https://github.com/TheFearlessMagicians/Woof/blob/master/public/in_app.png)
 ## Running instructions
 
 To run this app locally, clone the directory
