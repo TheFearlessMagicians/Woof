@@ -42,61 +42,65 @@ router.get('/register', function(req, res) {
 
 
 router.post("/register", function(req, res) {
-    User.register(new User({ username: req.body.username }), req.body.password, function(error, newlyCreatedUser) {
-        if (error) {
-            console.log("COULD NOT REGISTER USER IN THE POST ROUTE");
-            res.render("register");
-            console.log(error);
-        } else {
-            passport.authenticate("local")(req, res, function() {
-                let user = req.body.user;
-                newlyCreatedUser.name = user.name;
-                newlyCreatedUser.nickname = user.nickname;
-                newlyCreatedUser.address = user.address;
-                newlyCreatedUser.email = user.email;
-                newlyCreatedUser.numberOfDogs = user.numberOfDogs;
-                newlyCreatedUser.url = "/user/" + newlyCreatedUser.id;
-                newlyCreatedUser.save(function(error, savedUser) {
-                    for (let i = 0; i < user.numberOfDogs; i++) {
-                        let tempDog = req.body[`dog${i}`];
-                        Dog.create(tempDog, function(error, createdDog) {
-                            if (error) {
-                                console.log("DOG NOT CREATED! WOOF WOOF");
-                            } else {
-                                //TO DO CORDINATES
-                                createdDog.location = [req.body.lng, req.body.lat];
-                                createdDog.owner = newlyCreatedUser;
-                                createdDog.url = "/dog/" + createdDog.id;
-                                createdDog.save(function(error, savedDog) {
-                                    newlyCreatedUser.update({
-                                        $push: {
-                                            dogs: savedDog._id,
-                                        }
-                                    }, function(error, updatedUser) {
-                                        if (error) {
-                                            console.log('UNABLE TO UPDATE USER');
-                                        }
-                                    })
+            User.register(new User({ username: req.body.username }), req.body.password, function(error, newlyCreatedUser) {
+                    if (error) {
+                        console.log("COULD NOT REGISTER USER IN THE POST ROUTE");
+                        res.render("register");
+                        console.log(error);
+                    } else {
+                        passport.authenticate("local")(req, res, function() {
+                                let user = req.body.user;
+                                newlyCreatedUser.name = user.name;
+                                newlyCreatedUser.nickname = user.nickname;
+                                newlyCreatedUser.address = user.address;
+                                newlyCreatedUser.email = user.email;
+                                newlyCreatedUser.numberOfDogs = user.numberOfDogs;
+                                newlyCreatedUser.url = "/user/" + newlyCreatedUser.id;
+                                newlyCreatedUser.save(function(error, savedUser) {
+                                        for (let i = 0; i < user.numberOfDogs; i++) {
+                                            let tempDog = req.body[`dog${i}`];
+                                            Dog.create(tempDog, function(error, createdDog) {
+                                                    if (error) {
+                                                        console.log("DOG NOT CREATED! WOOF WOOF");
+                                                    } else {
+                                                        //TO DO CORDINATES
+                                                        createdDog.location = [req.body.lng, req.body.lat];
+                                                        createdDog.owner = newlyCreatedUser;
+                                                        createdDog.url = "/dog/" + createdDog.id;
+                                                        createdDog.save(function(error, savedDog) {
+                                                                if (error) {
+                                                                    console.log("COULD NOT SAVE DOG")
+                                                                } else {
+                                                                    newlyCreatedUser.update({
+                                                                        $push: {
+                                                                            dogs: savedDog._id,
+                                                                        }
+                                                                    }, function(error, updatedUser) {
+                                                                        if (error) {
+                                                                            console.log('UNABLE TO UPDATE USER');
+                                                                        }
+                                                                    });
+                                                                }
+                                                            }
+                                                        }
+                                                    });
+                                            }
+                                            console.log("USER REGISTERED");
+                                            res.render('maps', {
+                                                gmapsCredential: credentials.gmaps,
+                                                'authorized': true
+                                            });
+                                        });
                                 });
-                            }
-                        });
-                    }
-                    console.log("USER REGISTERED");
-                    res.render('maps', {
-                        gmapsCredential: credentials.gmaps,
-                        'authorized': true
+                        }
                     });
-                });
             });
+
+        function isLoggedIn(req, res, next) {
+            if (req.isAuthenticated()) {
+                return next();
+            }
+            res.redirect("/login");
         }
-    });
-});
 
-function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.redirect("/login");
-}
-
-module.exports = router;
+        module.exports = router;
