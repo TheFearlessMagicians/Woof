@@ -1,13 +1,13 @@
 # Woof
-HackUCI project. Find me a dog!
-
+This is Woof. It is Wilson, Varun and Hanif's HackUCI project. 
 
 ## What is Woof?
 Woof is an app for dog owners and dog lovers to connect with one another.
-![alt text](http://url/to/img.png) 
+![alt text](https://github.com/TheFearlessMagicians/Woof/blob/master/public/woof.png)
+You can chat with dog owners and meet up with them anytime, anywhere!
 ## Running instructions
 
-To run this app, clone the directory
+To run this app locally, clone the directory
 
 `git clone https://github.com/TheFearlessMagicians/Woof.git`
 
