@@ -50,35 +50,34 @@ div .form-group{
 
 .slideshow li:nth-child(1)
 {
-    background-image: url(../Dogs/5.jpg);
+    background-image: url(https://images.unsplash.com/photo-1508017472330-b8f1641e86aa?ixlib=rb-0.3.5&s=e5cbf00199be720038e18312ebac9fc3&auto=format&fit=crop&w=1650&q=80);
 }
-
 .slideshow li:nth-child(2)
 {
     animation-delay: 3s;
 
-    background-image: url(../Dogs/cover.png);
+    background-image: url(https://images.unsplash.com/photo-1442605527737-ed62b867591f?ixlib=rb-0.3.5&s=0dc633ba2e22be3f2652a80f2b1c37cc&auto=format&fit=crop&w=2850&q=80);
 }
 
 .slideshow li:nth-child(3)
 {
     animation-delay: 6s;
 
-    background-image: url(../Dogs/klee_kai_puppy.jpg);
+    background-image: url(https://images.unsplash.com/photo-1481285689591-43b93cc44811?ixlib=rb-0.3.5&s=a49e4f24fafef013b8d3b2e93c2bf773&auto=format&fit=crop&w=2122&q=80);
 }
 
 .slideshow li:nth-child(4)
 {
     animation-delay: 9s;
 
-    background-image: url(../Dogs/golden_retriever.jpg);
+    background-image: url(https://images.unsplash.com/photo-1503514662580-2388029e9434?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f76ecba3bf6c7fbf6922fa6b609a60e4&auto=format&fit=crop&w=2849&q=80);
 }
 
 .slideshow li:nth-child(5)
 {
     animation-delay: 12s;
 
-    background-image: url(../Shih_tzu_SERP.jpg);
+    background-image: url(https://images.unsplash.com/photo-1515643753254-bc2a61953a01?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=35a3e98ff3cc95c8e7861ddd0e64d3e1&auto=format&fit=crop&w=2850&q=80);
 }
 
 @keyframes imageAnimation
