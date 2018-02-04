@@ -15,6 +15,6 @@ Then, make sure you have the required dependencies installed. `npm`, `mongodb`, 
 After that, 
 ```sh
 npm install;
-npm run-dev
+npm run dev
 ```
 
