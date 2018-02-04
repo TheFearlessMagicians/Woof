@@ -59,16 +59,16 @@
       socket.on('POSITION_RECEIVED', function(latLng) {
           //Note: latLng is a json object of :
           //{lat: LATITUDE, lng: LONGITUDE};
-          let cordinates = [Number(latlng.lng), Number(latlng.lat)];
+          let coordinates = [Number(latlng.lng), Number(latlng.lat)];
           distance = 100 * 1000; //in meteres
           point = {
               type: "Point",
-              cordinates: cordinates,
+              'coordinates': coordinates,
           };
           Dog.find({
               loc: {
                   $near: {
-                      $geomentry: point,
+                      $geometry: point,
                       $maxDistance: distance,
                   }
               }
