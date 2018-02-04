@@ -1,9 +1,68 @@
+
+<!-- <form  class= "animate form-inline" id="logInterface">
+    <div class="form-group">
+	    <label style="margin-bottom: -1%;" for= "username"><b>Username</b></label>
+	    <input id="username" type="text" placeholder="Enter Username" name="username" required>
+
+	    <label style="margin-bottom: -1%;" for="pwd"><b>Password</b></label>
+	    <input id="password" type="password" placeholder="Enter Password" name="password" required>
+
+	    <button type="submit" id="login">Login</button>
+
+	    <div id = "register">
+	    	<h5><center><a href="/register">Or Register </a></center></h4>
+	    </div>
+  	</div>
+</form>
+<script>
+$('button#login').on('click',function(){
+  //alert(`posting ${document.getElementById('username').value}, ${document.getElementById('password').value}`);
+  $.post('/login',{'username':document.getElementById('username').value,
+                'password':document.getElementById('password').value})});
+</script> -->
+ 
 <% include ./partials/header %>
-<div>
-	<form action="/login" method="POST">
-	<input type="text" name="username">
-	<input type="password" name="password">
-	<input type="submit" value="Login!">
-</form>	
+<div class = "container" id="loginPage">
+	<div class="container">
+	    <div class="row">
+	        <div class="col-md-4 col-md-offset-7">
+	            <div class="panel panel-default">
+	                <div class="panel-heading">
+	                    <span class="glyphicon glyphicon-lock"></span> Login</div>
+	                <div class="panel-body">
+	                    <form class="form-horizontal" role="form" action="/login" method="POST">
+	                    <div class="form-group">
+	                        <label for="email" class="col-sm-3 control-label">
+	                            Email</label>
+	                        <div class="col-sm-9">
+	                            <input type="email" class="form-control" name= "email" placeholder="Email" required>
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label for="password" class="col-sm-3 control-label">
+	                            Password</label>
+	                        <div class="col-sm-9">
+	                            <input type="password" class="form-control" name = "password" placeholder="Password" required>
+	                        </div>
+	                    </div>
+	                   
+	                    <div class="form-group last">
+	                        <div class="col-sm-offset-3 col-sm-9">
+	                            <button type="submit" class="btn btn-success btn-sm">
+	                                Sign in</button>
+	                        </div>
+	                    </div>
+	                    </form>
+	                </div>
+	                <div class="panel-footer">
+	                    Not Registered? <a href= /register>Register here</a></div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
 </div>
-<% include ./partials/footer %>
+
+ <% include ./partials/footer %>
+
+
+

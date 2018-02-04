@@ -51,10 +51,15 @@
 io.attach(server);
 let sockets = []
 io.on('connection', function(socket) {
+
+          console.log('connection callback called.');
+          socket.emit('CONNECTED_USERS_INFO',{'connected':sockets});
+          socket.broadcast.emit('SPECIAL_MESSAGE_SENT',{'message':`${socket} connected!`})
+//          sockets.push(socket);
     // console.log('a client connected.')
 
     //socket login attempts.
-    socket.on('LOGIN_ATTEMPT', function(user) {
+    /*socket.on('LOGIN_ATTEMPT', function(user) {
         User.findOne({
             username: user.username,
         }, function(error, foundUser) {
@@ -71,8 +76,7 @@ io.on('connection', function(socket) {
             }
         })
 
-    });
-
+});*/
     socket.on('POSITION_RECEIVED',function(latLng){
               //Note: latLng is a json object of :
               //{lat: LATITUDE, lng: LONGITUDE};
@@ -82,5 +86,6 @@ io.on('connection', function(socket) {
    socket.on('SEND_MESSAGE',function(message){
              socket.broadcast.emit('MESSAGE_SENT',message);
    })
+
 
 });

@@ -1,4 +1,5 @@
 <% include ./partials/header %>
+<div class="container" id="registerPage">
     <div class="container col-md-12">
         <div class="col-md-6">
             <div class="container-fixed">
@@ -8,20 +9,20 @@
                         <form action="/register" method="POST" id="registerForm">
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label style="margin-bottom: -1.5%;">Name</label>
-                                    <input type="text" placeholder="Enter Name" name="user[name]" class="form-control">
+                                    <label>Name</label>
+                                    <input type="text" placeholder="Enter Name" name="user[name]" class="form-control" required>
                                 </div>
                                  <div class="form-group">
-                                    <label style="margin-bottom: -1.5%;">Nickname</label>
+                                    <label>Nickname</label>
                                     <input type="text" placeholder="Enter Nickname" name="user[nickName]" class="form-control">
                                 </div>
                                  <div class="form-group">
                                     <label style="margin-bottom: -1.5%;">UserName</label>
-                                    <input type="text" placeholder="Enter Username" name="username" class="form-control">
+                                    <input type="text" placeholder="Enter Username" name="username" class="form-control" required>
                                 </div>
                                  <div class="form-group">
                                     <label style="margin-bottom: -1.5%;">Password</label>
-                                    <input type="password" placeholder="Enter Password" name="password" class="form-control">
+                                    <input type="password" placeholder="Enter Password" name="password" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label style="margin-bottom: 1%;">Address</label>
@@ -36,7 +37,7 @@
                                         <label style="margin-bottom: -1.5%;">Zip</label>
                                         <input type="text" placeholder="Enter Zip Code Here.." class="form-control" name="user[address][zip]">
                                     </div>
-                                    <div class="form-group" style="float :left; width: 20%; margin: 20 0 0 0;">
+                                    <div class="form-group" style="float :left; width: 30%; margin: 18 0 0 30;">
                                         <label style="margin-top: -8%, margin-bottom: 2%; ">State &nbsp; &nbsp;</label>
                                         <select class="selectpicker" name="user[address][state]">
                                             <option value="AL">Alabama</option>
@@ -93,8 +94,8 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group" style="overflow: hidden">
-                                    <label style="margin-bottom: -1.5%;">Email Address</label>
+                                <div class="form-group" style="clear:both">
+                                    <label>Email Address</label>
                                     <input type="text" placeholder="Enter Email Address Here.." class="form-control" name="user[email]">
                                 </div>
                                 <div class="form-group" id="doggoNumber">
@@ -111,7 +112,11 @@
             </div>
         </div>
     </div>
-<% include ./partials/footer %>
+
+</div>
+
+<% include ./partials/footer %>s
+
     <script>
     function insertDogsForm() {
         let numberOfDogs = Number(document.getElementById('nDogs').value);
@@ -123,9 +128,18 @@
             $(`div #doggoNumber`).append(` <div class= "dogStyling" id="dogForm_${x}">
                           <h2>Dog ${x} </h2>
                  <%- include ./partials/dogForm %> </div>`);
+                 $(`div#doggoNumber div#dogForm_${x} input.dognameinput`).attr('name',`dog${x-1}[name]`);
+                    $(`div#doggoNumber div#dogForm_${x} input.dogbreedinput`).attr('name',`dog${x-1}[breed]`);
+                       $(`div#doggoNumber div#dogForm_${x} input.dogageinput`).attr('name',`dog${x-1}[age]`);
+                          $(`div#doggoNumber div#dogForm_${x} input.dogpersonalityinput`).attr('name',`dog${x-1}[personality]`);
+                             $(`div#doggoNumber div#dogForm_${x} input.dogstrangerinput`).attr('name',`dog${x-1}[behaviourWithStrangers]`);
+                                $(`div#doggoNumber div#dogForm_${x} input.dogtherapyinput1`).attr('name',`dog${x-1}[isTherapyDog]`);
+                                $(`div#doggoNumber div#dogForm_${x} input.dogtherapyinput2`).attr('name',`dog${x-1}[isTherapyDog]`);
+
         }
+
     };
 
 
-    
+
     </script>

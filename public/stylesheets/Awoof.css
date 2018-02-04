@@ -129,140 +129,43 @@ div .form-group{
 }
 
 
-/* The Modal (background) */
 
-.modal
-{
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-
-    display: block;
-    /* Full height */
-    overflow: auto;
-
-    width: 100%;
-    /* Full width */
-    height: 100%;
-    /* Black w/ opacity */
-    padding-top: 60px;
-    /* Enable scroll if needed */
-
-    background-color: rgb(0, 0, 0);
-    /* Fallback color */
-    background-color: rgba(0, 0, 0, .4);
+#loginpage { 
+  background: url(../Dogs/Chow_Chow.jpeg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width : 100%;
+  height: 100%;
 }
 
-
-/* Modal Content/Box */
-
-#logInterface
-{
-    border: 3px solid #f1f1f1;
+#registerPage{
+  background: url(../Dogs/CutiePie.jpeg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  overflow : scroll;
+  width : 100%;
+  height: 100%;
 }
 
-.modal-content
-{
-    width: 80%;
-    margin: 5px auto;
-    /* 15% from the top and centered */
-
-    border: 1px solid #888;
-    background-color: #fefefe;
-    /* Could be more or less, depending on screen size */
+.panel-default {
+opacity: 0.9;
+margin-top:30px;
 }
 
 input[type=text],
-input[type=password]
-{
-
+input[type=password],
+textarea{
     display: inline-block;
-
     box-sizing: border-box;
     width: 100%;
     margin: 15px 0px;
-    padding: 12px 20px;
-
     border: 1px solid #ccc;
 }
 
-.form-group
-{
-    width: 100%;
-    padding: 16px;
-}
-
-
-/* Set a style for all buttons */
-
-button
-{
-    width: 100%;
-    margin: 8px 0;
-    padding: 14px 20px;
-
-    cursor: pointer;
-
-    color: white;
-    border: none;
-    background-color: #4caf50;
-}
-
-
-/*effect to button*/
-
-button:hover
-{
-    opacity: .8;
-}
-
-.register
-{
-    margin: 0 auto;
-    padding-top: 16px;
-
-    color: #fff;
-}
-
-a:hover
-{
-    text-decoration: underline;
-
-    color: grey;
-}
-
-
-/* Add Zoom Animation */
-
-.animate
-{
-    -webkit-animation: animatezoom .6s;
-            animation: animatezoom .6s;
-}
-
-@-webkit-keyframes animatezoom
-{
-    from
-    {
-        -webkit-transform: scale(0);
-    }
-    to
-    {
-        -webkit-transform: scale(1);
-    }
-}
-
-@keyframes animatezoom
-{
-    from
-    {
-        transform: scale(0);
-    }
-    to
-    {
-        transform: scale(1);
-    }
-}
-
-
+.form-group.last { 
+    margin-bottom:0px;
+ }
