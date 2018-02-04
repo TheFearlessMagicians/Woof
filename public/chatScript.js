@@ -3,7 +3,18 @@
 
 socket.on('MESSAGE_SENT',function(message){
          sendMessage(message,me=false);
+});
+socket.on('SPECIAL_MESSAGE',function(msg){
+          sendSpecialMessage(msg.message)
 })
+socket.on('CONNECTED_USERS_INFO',function(users){
+          sendSpecialMessage(`${users.length} doggos are online!`);
+})
+function sendSpecialMessage(arg){
+          $('ul.messages').append(` <li class="list-group-item list-group-item-success">${arg}</li>`);
+            $('.messages').animate({ scrollTop: $('.messages').prop('scrollHeight') }, 300);
+}
+
 var Message;
 Message = function (arg) {
     this.text = arg.text, this.message_side = arg.message_side;
