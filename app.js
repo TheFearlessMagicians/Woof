@@ -73,9 +73,10 @@ io.on('connection', function(socket) {
 
     console.log('connection callback called.');
     socket.emit('CONNECTED_USERS_INFO', { 'connected': sockets });
-    socket.broadcast.emit('SPECIAL_MESSAGE_SENT', { 'message': `${socket} connected!` })
+    socket.broadcast.emit('SPECIAL_MESSAGE_SENT', { 'message': `Someone connected!` })
 
     socket.on('POSITION_RECEIVED', function(latLng) {
+                        sockets.push(0);
         console.log('position received.');
         //Note: latLng is a json object of :
         //{lat: LATITUDE, lng: LONGITUDE};
