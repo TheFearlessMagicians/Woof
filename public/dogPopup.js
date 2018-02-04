@@ -1,9 +1,9 @@
 function getdogPopupString(doggoName,picURL,doggoHref,ownerURL){
 return `<div class="container">
 	<div class="row">
-		<div class="col-lg-3 col-sm-6">
+		<div class="container">
 
-            <div class="card hovercard" style="overflow: hidden; margin: 0 auto;">
+            <div class="card hovercard">
                 <div class="cardheader">
 
                 </div>
@@ -28,5 +28,6 @@ return `<div class="container">
         </div>
 
 	</div>
-</div>`;
+</div>
+`;
 }
