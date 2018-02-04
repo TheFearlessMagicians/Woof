@@ -48,7 +48,7 @@
                                             lat: position.coords.latitude,
                                             lng: position.coords.longitude
                                         };
-                                        
+
                                         socket.emit('POSITION_RECEIVED', pos);
                                         var map = new google.maps.Map(document.getElementById('map'), {
                                             zoom: 13,
@@ -64,7 +64,7 @@
                                                   console.log('dogs near user response received.');
                                                      let mrkrs= dogs.map(function(dog, i) {
                                                           return new google.maps.Marker({
-                                                              position: dog.location,//TODO: DIFFERENT FORMAT.
+                                                              position: dog.geo,//TODO: DIFFERENT FORMAT.
                                                               label: labels[i % labels.length],
                                                               dogName:dog.name,
                                                               dogPicUrl:dog.picURL,
