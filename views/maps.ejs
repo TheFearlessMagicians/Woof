@@ -1,9 +1,9 @@
 <% include ./partials/header %>
     <div class="container" id="page">
+
         <% if(authorized == true){ %>
-            <!-- This is for Register access. Separate register page redirects to this map.ejs where login isn't displayed. -->
-            <% include ./partials/login %>
-                <% } %>
+                
+             
                     <div class="container col-sm-12">
                         <div class="container col-sm-6" style="width: 50%;" id="mapContainer">
                             <div id="map"></div>
@@ -160,3 +160,5 @@
     <!-- chat script -->
 <script src= '/public/chatScript.js'></script>
 <% include ./partials/footer %>
+
+   <% } %>

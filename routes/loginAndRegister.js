@@ -27,9 +27,13 @@ router.get('/login', function(req,res){
 });
 
 router.post('/login', passport.authenticate('local', {
-    successRedirect: "/",
+    successRedirect: "/main",
     failureRedirect: "/login",
-}), function(req, res) {});
+}), function(req, res) {
+    if(req.user){
+        console.log('user logged on. ')}else{
+            console.log('user no logon.');}
+});
 
 router.get('/logout', function(req,res){
     req.logout();

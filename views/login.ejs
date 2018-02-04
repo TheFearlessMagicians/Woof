@@ -1,11 +1,10 @@
-<% include ./partials/header %>
-<form method= "POST" action="/login" class= "animate form-inline" id="logInterface">
+<!-- <form  class= "animate form-inline" id="logInterface">
     <div class="form-group">
 	    <label style="margin-bottom: -1%;" for= "username"><b>Username</b></label>
-	    <input id="username" type="text" placeholder="Enter Username" name="uname" required>
+	    <input id="username" type="text" placeholder="Enter Username" name="username" required>
 
 	    <label style="margin-bottom: -1%;" for="pwd"><b>Password</b></label>
-	    <input id="password" type="password" placeholder="Enter Password" name="pwd" required>
+	    <input id="password" type="password" placeholder="Enter Password" name="password" required>
 
 	    <button type="submit" id="login">Login</button>
 
@@ -14,4 +13,17 @@
 	    </div>
   	</div>
 </form>
-<% include ./partials/footer %>
+<script>
+$('button#login').on('click',function(){
+  //alert(`posting ${document.getElementById('username').value}, ${document.getElementById('password').value}`);
+  $.post('/login',{'username':document.getElementById('username').value,
+                'password':document.getElementById('password').value})});
+</script> -->
+ 
+ <% include ./partials/header %>
+<form action="/login" method="POST">
+	<input type="text" name="username">
+	<input type="password" name="password">
+	<input type="submit" value="Login!">
+</form>
+ <% include ./partials/footer %>
