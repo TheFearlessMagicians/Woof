@@ -10,7 +10,7 @@
 				<div class="col-md-8 col-md-offset-2">
 					<div class="card card-header">
 						<img src="https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-1/c0.24.320.320/p320x320/15442379_1191275360949377_4114530872150356823_n.jpg?oh=315fd068a7c47744a80601bbb9563a69&oe=5B1E86D9" alt="Circle Image" class="avatar img-circle img-responsive img-raised">
-						<h1>Varun Naranyan</h1>
+						<h1><%=user.name%></h1>
 					</div>
         </div>
 	    </div>
@@ -25,11 +25,13 @@
 	            	<div class="col-md-9">
 	            		<h2>Proud Owners Of</h2>
 			            <div class="flexcontainer">
-			            	<div class="col-md-3 thumbnail">
-			            		<img class="img-rounded img-responsive img-raised" src="../public/Dogs/5.jpg">
-			            		<a href="#"><button class="like btn btn-fab btn-fab-mini btn-round btn-blue"><i class="material-icons">Click here to view more</i></button></a>
-			            	</div>
-
+                    <%user.dogs.forEach(function(dog) {%>
+  			            	<div class="col-md-3 thumbnail">
+  			            		<img class="img-rounded img-responsive img-raised" src="../public/Dogs/5.jpg">
+  			            		<a href="#"><button class="like btn btn-fab btn-fab-mini btn-round btn-blue"><i class="material-icons">Click here to view more <%=dog.name%></i></button></a>
+  			            	</div>
+                    <%});%>
+<!-- 
 			            	<div class="col-md-3 thumbnail">
 			            		<img class="img-rounded img-responsive img-raised" src="../public/Dogs/Chow_Chow.jpeg">
 			            		<a href="#"><button class="like btn btn-fab btn-fab-mini btn-round btn-blue"><i class="material-icons">Click here to view more</i></button></a>
@@ -43,7 +45,7 @@
 			            	<div class="col-md-3 thumbnail">
 			            		<img class="img-rounded img-responsive img-raised" src="../public/Dogs/shiba_inu_puppy.jpg">
 			            		<a href="#"><button class="like btn btn-fab btn-fab-mini btn-round btn-blue"><i class="material-icons">Click here to view more</i></button></a>
-			            	</div>
+			            	</div> -->
 			            </div>
                   <div class="row">
                     <div class="col-md-12 col-xs-12">
