@@ -54,32 +54,35 @@
                                         // Create an array of alphabetical characters used to label the markers.
                                         var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-                                        // Add some markers to the map.
-                                        // Note: The code uses the JavaScript Array.prototype.map() method to
-                                        // create an array of markers based on a given "locations" array.
-                                        // The map() method here has nothing to do with the Google Maps API.
-                                        // --------------------DUMMY --------------------------------
-                                        var markers = addDummyDogs(pos).map(function(location, i) {
-                                            return new google.maps.Marker({
-                                                position: location,
-                                                label: labels[i % labels.length]
+                                        // -------------------REAL CODE FOR MAP UPDATING ----------------------------------//
+                                        socket.on('DOGS_NEAR_USER', function(dogs) {
+                                           let mrkrs= dogs.map(function(dog, i) {
+                                                return new google.maps.Marker({
+                                                    position: dog.location,//TODO: DIFFERENT FORMAT.
+                                                    label: labels[i % labels.length],
+                                                    dogName:dog.name,
+                                                    dogPicUrl:dog.picURL,
+                                                    dogUrl: dog.url,
+                                                    ownerUrl:dog.owner // TODO : get owner uri.
+                                                });
                                             });
+                                            //
+                                            // Add a marker clusterer to manage the markers.
+                                            var markerCluster = new MarkerClusterer(map, mrkrs, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
+                                            mrkrs.forEach((marker)=>{google.maps.event.addListener(marker, 'click', function() {
+                                                      var infowindow = new google.maps.InfoWindow({
+                                                                   content:  getdogPopupString(marker.dogName,marker.dogPicUrl,marker.dogUrl,marker.ownerUrl)
+                                                                });
+
+                                              infowindow.open(map, this);
+                                            })});
+
+                                        });
+                                        google.maps.event.addListener(map, 'tilesloaded', function(){
+                                              document.getElementById('loading').innerHTML = '';
                                         });
 
-                                        // Add a marker clusterer to manage the markers.
-                                        var markerCluster = new MarkerClusterer(map, markers, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 
-                                        markers.forEach((marker)=>{google.maps.event.addListener(marker, 'click', function() {
-                                                  var infowindow = new google.maps.InfoWindow({
-                                                               content:  getdogPopupString('doggoName','/public/Dogs/samoyed-puppy.jpg','/dog/1','/user/1')
-                                                             });
-                                          //infowindow.setContent(this.content);
-
-                                          infowindow.open(map, this);
-                                        })});
-                                        // infoWindow.setPosition(pos);
-                                        //infoWindow.setContent('Location found.');
-                                        //infoWindow.open(map);
                                         map.setCenter(pos);
                                     }, function() {
 
@@ -92,9 +95,7 @@
 
 
                             //Loading screen for map.
-                            google.maps.event.addListener(map, 'tilesloaded', function(){
-                                  document.getElementById('loading').innerHTML = '';
-                              })
+
                             </script>
                             <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
                             </script>
@@ -116,30 +117,7 @@
                                 //$(numUsersOnline).html();
                             });
 
-                            // -------------------REAL CODE FOR MAP UPDATING ----------------------------------//
-                            socket.on('DOGS_NEAR_USER', function(dogs) {
-                               let mrkrs= dogs.map(function(dog, i) {
-                                    return new google.maps.Marker({
-                                        position: dog.location,//TODO: DIFFERENT FORMAT.
-                                        label: labels[i % labels.length],
-                                        dogName:dog.name,
-                                        dogPicUrl:dog.picURL,
-                                        dogUrl: dog.url,
-                                        ownerUrl:dog.owner // TODO : get owner uri.
-                                    });
-                                });
-                                //
-                                // Add a marker clusterer to manage the markers.
-                                var markerCluster = new MarkerClusterer(map, mrkrs, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-                                mrkrs.forEach((marker)=>{google.maps.event.addListener(marker, 'click', function() {
-                                          var infowindow = new google.maps.InfoWindow({
-                                                       content:  getdogPopupString(marker.dogName,marker.dogPicUrl,marker.dogUrl,marker.ownerUrl)
-                                                    });
 
-                                  infowindow.open(map, this);
-                                })});
-
-                            });
                             </script>
                         </div>
                         <div class="container col-sm-6" style="width:50%;">
