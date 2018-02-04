@@ -12,7 +12,7 @@ router.get('/main', function(req, res) {
         });
     } else {
         res.render('maps', {
-            gmapsCredential: credentials.gmaps,
+            gmapsCredential:'',
             'authorized': false,
         });
     }

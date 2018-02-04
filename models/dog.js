@@ -10,9 +10,9 @@ let dogSchema = new mongoose.Schema ({
 	isTherapyDog: Boolean,
 	behaviourWithStrangers: String,
 	description: String,
-	location: {
-		type: [Number],
-		index: "2dsphere",
+	loc: {
+		type:  mongoose.Schema.Types.Point,
+		coordinates:[Number]
 	},
 	owner: {
 		type: mongoose.Schema.ObjectId,
@@ -25,4 +25,5 @@ let dogSchema = new mongoose.Schema ({
 	url: String,
 });
 
+dogSchema.index({'loc': '2dsphere'});
 module.exports = mongoose.model("Dog", dogSchema);

@@ -4,26 +4,24 @@ User = require("../models/user")
 
 //AUTHENTICATION
 let passport = require("passport");
-LocalStratergy = require("passport-local");
-
 //PASSPORT CONFIGURATION
-app.use(require("express-session")({
-    secret: "I wanna go poopie",
-    resave: false,
-    saveUninitialized: false,
-}));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(function(req, res, next) {
-    res.locals.currentUser = req.user;
-    next();
-});
-passport.use(new LocalStratergy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// app.use(require("express-session")({
+//     secret: "I wanna go poopie",
+//     resave: false,
+//     saveUninitialized: false,
+// }));
+// app.use(passport.initialize());
+// app.use(passport.session());
+// app.use(function(req, res, next) {
+//     res.locals.currentUser = req.user;
+//     next();
+// });
+// passport.use(new LocalStratergy(User.authenticate()));
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 
 router.get('/login', function(req, res) {
-    res.render('login');
+    res.render('login', {currentUser: req.user});
 });
 
 router.post('/login', passport.authenticate('local', {
@@ -37,7 +35,7 @@ router.get('/logout', function(req, res) {
 });
 
 router.get('/register', function(req, res) {
-    res.render('register', {});
+    res.render('register', {currentUser: req.user});
 });
 
 
@@ -64,11 +62,15 @@ router.post("/register", function(req, res) {
                                 console.log("DOG NOT CREATED! WOOF WOOF");
                             } else {
                                 //TO DO CORDINATES
-                                createdDog.location = [req.body.lng, req.body.lat];
+                                console.log('coordinates:')
+                                console.log(req.body.lngval + ' ' + req.body.latval);
+                                createdDog.location = [Number(req.body.lngval), Number(req.body.latval)];
+                                console.log([Number(req.body.lngval), Number(req.body.latval)])
                                 createdDog.owner = newlyCreatedUser;
                                 createdDog.url = "/dog/" + createdDog.id;
                                 createdDog.save(function(error, savedDog) {
                                     if (error) {
+                                        console.log(error);
                                         console.log("COULD NOT SAVE DOG")
                                     } else {
                                         newlyCreatedUser.update({
