@@ -23,7 +23,7 @@ router.get('/user/:id', function(req, res) {
         } else {
             console.log(foundUser);
             res.render('userPage', {
-                user: foundUser
+                user: foundUser,
             });
         }
     });

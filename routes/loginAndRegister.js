@@ -14,13 +14,13 @@ app.use(require("express-session")({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(function(req,res,next){
+  res.locals.currentUser = req.user;
+  next();
+});
 passport.use(new LocalStratergy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
-router.get('/404', function(req, res) {
-    res.send("Failed to Log in", 404);
-});
 
 router.get('/login', function(req,res){
     res.render('login');
@@ -30,9 +30,6 @@ router.post('/login', passport.authenticate('local', {
     successRedirect: "/main",
     failureRedirect: "/login",
 }), function(req, res) {
-    if(req.user){
-        console.log('user logged on. ')}else{
-            console.log('user no logon.');}
 });
 
 router.get('/logout', function(req,res){
@@ -71,5 +68,12 @@ router.post("/register", function(req, res) {
         }
     });
 });
+
+function isLoggedIn (req,res,next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
 
 module.exports = router;

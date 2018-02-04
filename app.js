@@ -29,6 +29,12 @@ app.use(require('./routes/loginAndRegister'));
 app.use(require('./routes/map'));
 app.use(require('./routes/dog'));
 
+//req.user avalaible to all routes
+app.use(function(req,res,next){
+  res.locals.currentUser = req.user;
+  next();
+});
+
 //App settings
 app.set('port', serverPort);
 app.set('view engine', 'ejs');
@@ -62,10 +68,14 @@ let server = app.listen(app.get('port'), function() {
 io.attach(server);
 let sockets = []
 io.on('connection', function(socket) {
+          console.log('connection callback called.');
+          socket.emit('CONNECTED_USERS_INFO',{'connected':sockets});
+          socket.broadcast.emit('SPECIAL_MESSAGE',{'message':`${socket} connected!`})
+//          sockets.push(socket);
     // console.log('a client connected.')
 
     //socket login attempts.
-    socket.on('LOGIN_ATTEMPT', function(user) {
+    /*socket.on('LOGIN_ATTEMPT', function(user) {
         User.findOne({
             username: user.username,
         }, function(error, foundUser) {
@@ -82,8 +92,7 @@ io.on('connection', function(socket) {
             }
         })
 
-    });
-
+});*/
     socket.on('POSITION_RECEIVED',function(latLng){
               //Note: latLng is a json object of :
               //{lat: LATITUDE, lng: LONGITUDE};
@@ -93,5 +102,6 @@ io.on('connection', function(socket) {
    socket.on('SEND_MESSAGE',function(message){
              socket.broadcast.emit('MESSAGE_SENT',message);
    })
+
 
 });
