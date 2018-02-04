@@ -63,11 +63,11 @@
 
                                 // Try HTML5 geolocation.
                                 console.log('initmap called.')
-                                if (navigator.geolocation) {
-                                    navigator.geolocation.getCurrentPosition(function(position) {
+                              //  if (navigator.geolocation) {
+                    //                navigator.geolocation.getCurrentPosition(function(position) {
                                         var pos = {
-                                            lat: position.coords.latitude,
-                                            lng: position.coords.longitude
+                                            lat:  33.6488294,//position.coords.latitude,
+                                            lng:-117.84275960000001,//position.coords.longitude
                                         };
 
                                         socket.emit('POSITION_RECEIVED', pos);
@@ -131,14 +131,16 @@
 
 
 
-                                    }, function() {
+                                    }
 
-                                    });
-                                } else {
+                                    //, function() {
 
-                                }
+                              //      });
+                              //  } else {
 
-                            }
+                              //  }
+
+                          //  }
 
 
                             //Loading screen for map.
@@ -154,8 +156,8 @@
                             //--------------Socket Script ---------------------------//
                             var numUsersOnline = "h2";
                               //NOTE: SOCKET CONNECTION IS HARD CODED.
-                              var socket = io.connect("localhost:8000");
-                           // var socket = io.connect("169.234.99.106:8000");
+                              //var socket = io.connect("localhost:8000");
+                            var socket = io.connect("169.234.99.106:8000");
                             socket.on('connect', function() {
 
                             });
