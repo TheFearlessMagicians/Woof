@@ -68,7 +68,7 @@
           Dog.find({
               loc: {
                   $near: {
-                      $geomentry: point,
+                      $geometry: point,
                       $maxDistance: distance,
                   }
               }
