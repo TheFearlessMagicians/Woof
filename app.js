@@ -57,9 +57,10 @@
       socket.broadcast.emit('SPECIAL_MESSAGE_SENT', { 'message': `${socket} connected!` })
 
       socket.on('POSITION_RECEIVED', function(latLng) {
+                console.log('position received.');
           //Note: latLng is a json object of :
           //{lat: LATITUDE, lng: LONGITUDE};
-          let coordinates = [Number(latlng.lng), Number(latlng.lat)];
+          let coordinates = [Number(latLng.lng), Number(latLng.lat)];
           distance = 100 * 1000; //in meteres
           point = {
               type: "Point",

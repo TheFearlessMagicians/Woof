@@ -64,9 +64,10 @@ router.post("/register", function(req, res) {
                                 console.log("DOG NOT CREATED! WOOF WOOF");
                             } else {
                                 //TO DO CORDINATES
-                                console.log(req.body.lng + ' ' + req.body.lat);
-                                createdDog.location = [Number(req.body.lng), Number(req.body.lat)];
-                                console.log([Number(req.body.lng), Number(req.body.lat)])
+                                console.log('coordinates:')
+                                console.log(req.body.lngval + ' ' + req.body.latval);
+                                createdDog.location = [Number(req.body.lngval), Number(req.body.latval)];
+                                console.log([Number(req.body.lngval), Number(req.body.latval)])
                                 createdDog.owner = newlyCreatedUser;
                                 createdDog.url = "/dog/" + createdDog.id;
                                 createdDog.save(function(error, savedDog) {
