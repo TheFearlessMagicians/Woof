@@ -4,7 +4,7 @@
 socket.on('MESSAGE_SENT',function(message){
          sendMessage(message,me=false);
 });
-socket.on('SPECIAL_MESSAGE',function(msg){
+socket.on('SPECIAL_MESSAGE_SENT',function(msg){
           sendSpecialMessage(msg.message)
 })
 socket.on('CONNECTED_USERS_INFO',function(users){

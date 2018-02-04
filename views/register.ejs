@@ -112,8 +112,11 @@
             </div>
         </div>
     </div>
+
 </div>
-<% include ./partials/footer %>
+
+<% include ./partials/footer %>s
+
     <script>
     function insertDogsForm() {
         let numberOfDogs = Number(document.getElementById('nDogs').value);
@@ -125,9 +128,18 @@
             $(`div #doggoNumber`).append(` <div class= "dogStyling" id="dogForm_${x}">
                           <h2>Dog ${x} </h2>
                  <%- include ./partials/dogForm %> </div>`);
+                 $(`div#doggoNumber div#dogForm_${x} input.dognameinput`).attr('name',`dog${x-1}[name]`);
+                    $(`div#doggoNumber div#dogForm_${x} input.dogbreedinput`).attr('name',`dog${x-1}[breed]`);
+                       $(`div#doggoNumber div#dogForm_${x} input.dogageinput`).attr('name',`dog${x-1}[age]`);
+                          $(`div#doggoNumber div#dogForm_${x} input.dogpersonalityinput`).attr('name',`dog${x-1}[personality]`);
+                             $(`div#doggoNumber div#dogForm_${x} input.dogstrangerinput`).attr('name',`dog${x-1}[behaviourWithStrangers]`);
+                                $(`div#doggoNumber div#dogForm_${x} input.dogtherapyinput1`).attr('name',`dog${x-1}[isTherapyDog]`);
+                                $(`div#doggoNumber div#dogForm_${x} input.dogtherapyinput2`).attr('name',`dog${x-1}[isTherapyDog]`);
+
         }
+
     };
 
 
-    
+
     </script>

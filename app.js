@@ -68,9 +68,10 @@ let server = app.listen(app.get('port'), function() {
 io.attach(server);
 let sockets = []
 io.on('connection', function(socket) {
+
           console.log('connection callback called.');
           socket.emit('CONNECTED_USERS_INFO',{'connected':sockets});
-          socket.broadcast.emit('SPECIAL_MESSAGE',{'message':`${socket} connected!`})
+          socket.broadcast.emit('SPECIAL_MESSAGE_SENT',{'message':`${socket} connected!`})
 //          sockets.push(socket);
     // console.log('a client connected.')
 
