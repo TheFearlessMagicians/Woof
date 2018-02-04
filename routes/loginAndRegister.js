@@ -14,25 +14,24 @@ app.use(require("express-session")({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(function(req,res,next){
-  res.locals.currentUser = req.user;
-  next();
+app.use(function(req, res, next) {
+    res.locals.currentUser = req.user;
+    next();
 });
 passport.use(new LocalStratergy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-router.get('/login', function(req,res){
+router.get('/login', function(req, res) {
     res.render('login');
 });
 
 router.post('/login', passport.authenticate('local', {
     successRedirect: "/main",
     failureRedirect: "/login",
-}), function(req, res) {
-});
+}), function(req, res) {});
 
-router.get('/logout', function(req,res){
+router.get('/logout', function(req, res) {
     req.logout();
     res.redirect("/");
 });
@@ -58,6 +57,29 @@ router.post("/register", function(req, res) {
                 newlyCreatedUser.numberOfDogs = user.numberOfDogs;
                 newlyCreatedUser.url = "/user/" + newlyCreatedUser.id;
                 newlyCreatedUser.save(function(error, savedUser) {
+                    for (let i = 0; i < user.numberOfDogs; i++) {
+                        let tempDog = req.body[`dog${i}`];
+                        Dog.create(tempDog, function(error, createdDog) {
+                            if (error) {
+                                console.log("DOG NOT CREATED! WOOF WOOF");
+                            } else {
+                                //TO DO CORDINATES
+                                createdDog.owner = newlyCreatedUser;
+                                createdDog.url = "/dog/" + createdDog.id;
+                                createdDog.save(function(error, savedDog) {
+                                    newlyCreatedUser.update({
+                                        $push: {
+                                            dogs: savedDog._id,
+                                        }
+                                    }, function(error, updatedUser) {
+                                        if (error) {
+                                            console.log('UNABLE TO UPDATE USER');
+                                        }
+                                    })
+                                });
+                            }
+                        });
+                    }
                     console.log("USER REGISTERED");
                     res.render('maps', {
                         gmapsCredential: credentials.gmaps,
@@ -69,8 +91,8 @@ router.post("/register", function(req, res) {
     });
 });
 
-function isLoggedIn (req,res,next){
-    if(req.isAuthenticated()){
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
         return next();
     }
     res.redirect("/login");
