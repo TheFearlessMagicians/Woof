@@ -15,6 +15,8 @@ You can chat with dog owners and meet up with them anytime, anywhere!
 * MongoDB
 * Express
 * Socket.io
+* Google Maps Javascript API
+* Mailgun (email notifications)
 
 ## Running instructions
 
@@ -33,7 +35,7 @@ $ npm run dev
 ```
 
 ## Notice
-To run with google maps, create a directory in the root called /credentials with a file credentials.js in it with all your API key's needed. This includes Google Maps API key, and the mailgun API key (for email notifications of users).
+To run with google maps and mailgun email notifications, create a directory in the root called /credentials with a file credentials.js in it with all your API key's needed. This includes Google Maps API key, and the mailgun API key (for email notifications of users).
 ```sh
 $ cd woof #your woof directory
 $ mkdir credentials
