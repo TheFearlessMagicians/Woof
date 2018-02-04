@@ -1,3 +1,7 @@
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
 div .form-group {
     margin-bottom: -2%;
     margin-top: -1%;
@@ -54,28 +58,28 @@ div .form-group {
 }
 
 .slideshow li:nth-child(2) {
-    animation-delay: 3s;
+    animation-delay: 1.5s;
 
-    background-image: url(https://images.unsplash.com/photo-1442605527737-ed62b867591f?ixlib=rb-0.3.5&s=0dc633ba2e22be3f2652a80f2b1c37cc&auto=format&fit=crop&w=2850&q=80);
+    background-image: url(https://images.unsplash.com/photo-1510020553968-30f966e1ec9e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=74431fa8893bb465f3c8a637624c112a&auto=format&fit=crop&w=2767&q=80);
 }
 
 .slideshow li:nth-child(3) {
-    animation-delay: 6s;
+    animation-delay: 3.5s;
 
-    background-image: url(https://images.unsplash.com/photo-1481285689591-43b93cc44811?ixlib=rb-0.3.5&s=a49e4f24fafef013b8d3b2e93c2bf773&auto=format&fit=crop&w=2122&q=80);
+    background-image: url(https://images.unsplash.com/photo-1501538383113-ff3d1c43ed54?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b52665e4c5c7db8028889302606c04b4&auto=format&fit=crop&w=1950&q=80);
 }
 
 .slideshow li:nth-child(4) {
-    animation-delay: 9s;
+    animation-delay: 5.5s;
 
-    background-image: url(https://images.unsplash.com/photo-1503514662580-2388029e9434?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f76ecba3bf6c7fbf6922fa6b609a60e4&auto=format&fit=crop&w=2849&q=80);
+    background-image: url(https://images.unsplash.com/photo-1511105255968-ef36734a1784?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b437f3be75763ba883d23fe7846d189e&auto=format&fit=crop&w=1950&q=80);
 }
 
-.slideshow li:nth-child(5) {
-    animation-delay: 12s;
+/* .slideshow li:nth-child(5) {
+    animation-delay: 7.5s;
 
-    background-image: url(https://images.unsplash.com/photo-1515643753254-bc2a61953a01?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=35a3e98ff3cc95c8e7861ddd0e64d3e1&auto=format&fit=crop&w=2850&q=80);
-}
+    background-image: url(https://images.unsplash.com/photo-1516374479500-2355648c59ad?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=32dd2cb01c0b21382ea4f088bf43ef70&auto=format&fit=crop&w=2850&q=80);
+} */
 
 @keyframes imageAnimation {
     0% {
