@@ -75,6 +75,8 @@
                                                               ownerUrl:dog.owner // TODO : get owner uri.
                                                           });
                                                       });
+
+
                                                       //
 
                                                       var infowindows=[];
@@ -86,11 +88,14 @@
                                                                                   content:  getdogPopupString(marker.dogName,'public/Dogs/samoyed-puppy.jpg',marker.dogUrl,marker.ownerUrl)
                                                                         }));
 
+
                                                                         google.maps.event.addListener(marker, 'click', function() {
                                                                                   infowindows[i].open(map,this);
                                                            });
 
                                                       });
+
+                                                           console.log(infowindows)
 
                                                         var markerCluster = new MarkerClusterer(map, mrkrs, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
                                                   //    map.setCenter(pos);
