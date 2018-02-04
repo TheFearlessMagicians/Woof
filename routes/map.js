@@ -9,11 +9,13 @@ router.get('/main', function(req, res) {
         res.render('maps', {
             gmapsCredential: credentials.gmaps,
             'authorized': true,
+            currentUser: req.user
         });
     } else {
-        res.render('maps', {
+        res.render('mapsFailed', {
             gmapsCredential:'',
             'authorized': false,
+            currentUser: req.user
         });
     }
 });

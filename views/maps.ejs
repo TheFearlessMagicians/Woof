@@ -1,7 +1,27 @@
 <% include ./partials/header %>
-    <div class="container" id="page">
-
+        <% if(!currentUser) {%>
+          <div class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                  <p>One fine body&hellip;</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+          <% include ./partials/footer %>
+        <%}%>
         <% if(authorized == true){ %>
+        <div class="container" id="page">
+
         <div class="container" id="loading">
         <div class="container" id="loading-content">
               <img src="/public/loading.gif" alt="Loading" title="Loading" />
@@ -42,6 +62,7 @@
                                 //var infoWindow = new google.maps.InfoWindow;
 
                                 // Try HTML5 geolocation.
+                                console.log('initmap called.')
                                 if (navigator.geolocation) {
                                     navigator.geolocation.getCurrentPosition(function(position) {
                                         var pos = {
@@ -63,14 +84,15 @@
                                         socket.on('DOGS_NEAR_USER', function(dogs) {
                                                   console.log('dogs near user response received.');
                                                   console.log(`no of dogs queried: ${dogs.length}`)
-                                                     let mrkrs= dogs.map(function(dog, i) {
+                                                     var markers= dogs.map(function(dog, i) {
 
                                                                   console.log(dog.name+' marker added.'+i)
                                                           return new google.maps.Marker({
-                                                              position: new google.maps.LatLng(parseFloat(dog.geo['lat'])+ Math.random() * 0.02,parseFloat(dog.geo['lng'])+ Math.random() * 0.02),//TODO: DIFFERENT FORMAT.
+                                                              position: new google.maps.LatLng(parseFloat(dog.geo['lat'])+ Math.random() * 0.02, parseFloat(dog.geo['lng'])+ Math.random() * 0.02),//TODO: DIFFERENT FORMAT.
                                                               label: labels[i % labels.length],
                                                               dogName:dog.name,
-                                                              //dogPicUrl:dog.picURL,
+                                                             map:map//,
+                                                              dogPicUrl:dog.picURL,
                                                               dogUrl: dog.url,
                                                               ownerUrl:dog.owner // TODO : get owner uri.
                                                           });
@@ -82,8 +104,8 @@
                                                       var infowindows=[];
                                                            // Add a marker clusterer to manage the markers.
 
-                                                           mrkrs.forEach((marker,i)=>{
-
+                                                           markers.forEach((marker,i)=>{
+                                                                     console.log('putting marker '+i)
                                                                    infowindows.push(  new google.maps.InfoWindow({
                                                                                   content:  getdogPopupString(marker.dogName,'public/Dogs/samoyed-puppy.jpg',marker.dogUrl,marker.ownerUrl)
                                                                         }));
@@ -93,15 +115,20 @@
                                                                                   infowindows[i].open(map,this);
                                                            });
 
-                                                      });
+                                                 });
 
+<<<<<<< HEAD
                                                            console.log(infowindows)
 
                                                         var markerCluster = new MarkerClusterer(map, mrkrs, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
+=======
+                                                        var markerCluster = new MarkerClusterer(map, markers, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
+>>>>>>> 2c91ef3e5f486d2b6d444981b9f39622d9e82ea5
                                                   //    map.setCenter(pos);
                                                   google.maps.event.addListener(map, 'tilesloaded', function(){
                                                        //document.getElementById('loading').innerHTML = '';
                                                        $(`#loading`).css("display", "none");
+                                                      // map.setCenter(pos);
                                                   });
 
                                         });

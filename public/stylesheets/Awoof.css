@@ -1,26 +1,28 @@
-div .form-group{
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+div .form-group {
     margin-bottom: -2%;
     margin-top: -1%;
 }
 
-#registerPage div .form-group label{
+#registerPage div .form-group label {
     margin-bottom: -1.5%;
 }
 
 #landing-header {
-  z-index: 1;
-  position: relative;
-  text-align: center;
-  padding-top: 40vh;
+    z-index: 1;
+    position: relative;
+    text-align: center;
+    padding-top: 40vh;
 }
 
-#landing-header h1
-{
+#landing-header h1 {
     color: #fff;
 }
 
-.slideshow
-{
+.slideshow {
     position: fixed;
     z-index: 0;
     top: 0;
@@ -34,8 +36,7 @@ div .form-group{
     list-style: none;
 }
 
-.slideshow li
-{
+.slideshow li {
     position: absolute;
     z-index: 0;
     top: 0;
@@ -52,115 +53,119 @@ div .form-group{
     background-size: cover;
 }
 
-.slideshow li:nth-child(1)
-{
+.slideshow li:nth-child(1) {
     background-image: url(https://images.unsplash.com/photo-1508017472330-b8f1641e86aa?ixlib=rb-0.3.5&s=e5cbf00199be720038e18312ebac9fc3&auto=format&fit=crop&w=1650&q=80);
 }
-.slideshow li:nth-child(2)
-{
-    animation-delay: 3s;
 
-    background-image: url(https://images.unsplash.com/photo-1442605527737-ed62b867591f?ixlib=rb-0.3.5&s=0dc633ba2e22be3f2652a80f2b1c37cc&auto=format&fit=crop&w=2850&q=80);
+.slideshow li:nth-child(2) {
+    animation-delay: 1.5s;
+
+    background-image: url(https://images.unsplash.com/photo-1510020553968-30f966e1ec9e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=74431fa8893bb465f3c8a637624c112a&auto=format&fit=crop&w=2767&q=80);
 }
 
-.slideshow li:nth-child(3)
-{
-    animation-delay: 6s;
+.slideshow li:nth-child(3) {
+    animation-delay: 3.5s;
 
-    background-image: url(https://images.unsplash.com/photo-1481285689591-43b93cc44811?ixlib=rb-0.3.5&s=a49e4f24fafef013b8d3b2e93c2bf773&auto=format&fit=crop&w=2122&q=80);
+    background-image: url(https://images.unsplash.com/photo-1501538383113-ff3d1c43ed54?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b52665e4c5c7db8028889302606c04b4&auto=format&fit=crop&w=1950&q=80);
 }
 
-.slideshow li:nth-child(4)
-{
-    animation-delay: 9s;
+.slideshow li:nth-child(4) {
+    animation-delay: 5.5s;
 
-    background-image: url(https://images.unsplash.com/photo-1503514662580-2388029e9434?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f76ecba3bf6c7fbf6922fa6b609a60e4&auto=format&fit=crop&w=2849&q=80);
+    background-image: url(https://images.unsplash.com/photo-1511105255968-ef36734a1784?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b437f3be75763ba883d23fe7846d189e&auto=format&fit=crop&w=1950&q=80);
 }
 
-.slideshow li:nth-child(5)
-{
-    animation-delay: 12s;
+/* .slideshow li:nth-child(5) {
+    animation-delay: 7.5s;
 
-    background-image: url(https://images.unsplash.com/photo-1515643753254-bc2a61953a01?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=35a3e98ff3cc95c8e7861ddd0e64d3e1&auto=format&fit=crop&w=2850&q=80);
-}
+    background-image: url(https://images.unsplash.com/photo-1516374479500-2355648c59ad?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=32dd2cb01c0b21382ea4f088bf43ef70&auto=format&fit=crop&w=2850&q=80);
+} */
 
-@keyframes imageAnimation
-{
-    0%
-    {
+@keyframes imageAnimation {
+    0% {
         animation-timing-function: ease-in;
 
         opacity: 0;
     }
-    10%
-    {
+    10% {
         animation-timing-function: ease-out;
 
         opacity: 1;
     }
-    20%
-    {
+    20% {
         opacity: 1;
     }
-    30%
-    {
+    30% {
         opacity: 0;
     }
 }
 
 
+
 /*Map page CSS*/
 
-#page
-{
+#page {
     width: 100%;
     background-color: #f18973;
 }
 
-#mapContainer
-{
+#mapContainer {
     height: 100%;
     margin: 0 auto;
 }
 
-#map
-{
+#map {
     width: 100%;
     height: 100%;
 }
 
 
 
-#loginpage { 
-  background: url(../Dogs/Chow_Chow.jpeg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  width : 100%;
-  height: 100%;
+#loginpage {
+    background: url(http://wallarthd.com/wp-content/uploads/2015/05/cute-baby-puppy-wallpaper.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
 }
 
-#registerPage{
-  background: url(../Dogs/CutiePie.jpeg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  overflow : scroll;
-  width : 100%;
-  height: 100%;
+.flippy {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+
+#registerPage {
+    background: url(../Dogs/CutiePie.jpeg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow: scroll;
+    width: 100%;
+    height: 100%;
 }
 
 .panel-default {
-opacity: 0.9;
-margin-top:30px;
+    opacity: 0.9;
+    margin-top: 30px;
 }
 
 input[type=text],
 input[type=password],
 input[type=number],
-textarea{
+textarea {
     display: inline-block;
     box-sizing: border-box;
     width: 100%;
@@ -168,34 +173,42 @@ textarea{
     border: 1px solid #ccc;
 }
 
-.form-group.last { 
-    margin-bottom:0px;
- }
+.form-group.last {
+    margin-bottom: 0px;
+}
 
- .logoutLblPos{
+.logoutLblPos {
 
-   position:fixed;
-   right:10px;
-   top:5px;
-
+    position: fixed;
+    right: 10px;
+    top: 5px;
 }
 
 
-#loading{
-    display: block; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+#loading {
+    display: block;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
     margin-right: 200px;
-    width: 120%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,1); /* Black w/ opacity */
+    width: 120%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 1);
+    /* Black w/ opacity */
 }
 
-#loading-content{
+#loading-content {
     margin-top: 100px;
     margin-left: 270px;
+<<<<<<< HEAD
 
 }
 
@@ -220,3 +233,6 @@ textarea{
 
 
 
+=======
+}
+>>>>>>> 2c91ef3e5f486d2b6d444981b9f39622d9e82ea5
