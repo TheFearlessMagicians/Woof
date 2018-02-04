@@ -25,6 +25,7 @@ After that,
 ```sh
 $ npm install;
 $ mongod;
+$ #in another terminal/shell: 
 $ npm run dev
 ```
 
