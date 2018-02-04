@@ -6,7 +6,7 @@
                     <div class="panel-heading">
                         <h2 style="text-align: center; text-decoration: none">Registration Form</h2>
                         <div class="panel-body">
-                            <form action="/register" method="POST" id="registerForm" enctype="multipart/form-data">
+                            <form action="/register" method="POST" id="registerForm">
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label>Name</label>
@@ -17,7 +17,6 @@
                                         <input type="text" placeholder="Enter Nickname" name="user[nickName]" class="form-control">
                                     </div>
                                      <div class="form-group">
-                                        <label style="margin-bottom: -1.5%;">UserName</label>
                                         <input type="text" placeholder="Enter Username" name="username" class="form-control" required>
                                     </div>
                                      <div class="form-group">
@@ -106,7 +105,7 @@
                                     </div>
                                     <ul>
                                     </ul>
-                                    <button style="margin-top: none;" type="submit" form="registerForm" class="btn btn-lg btn-success" id="submitButton" style="margin-top: 5%;">Submit</button>
+                                    <input  type="submit", style="margin-top: none;" type="submit" form="registerForm" class="btn btn-lg btn-success" id="submitButton" style="margin-top: 5%;"></input>
                                 </div>
                             </form>
                     </div>
