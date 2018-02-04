@@ -105,8 +105,11 @@ io.on('connection', function(socket) {
             if (error) {
                 console.log(error);
             } else {
+
                 //Wilson here is your sorted dogs
+                socket.emit('DOGS_NEAR_USER', sortedDogs); // VARUN. This result undefined. ??
                 sortedDogs.forEach(function(pup) {
+
                     console.log(pup.name + ' ' + pup.delta);
                 });
             }

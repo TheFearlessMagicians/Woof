@@ -91,7 +91,7 @@
                                                               position: new google.maps.LatLng(parseFloat(dog.geo['lat'])+ Math.random() * 0.02, parseFloat(dog.geo['lng'])+ Math.random() * 0.02),//TODO: DIFFERENT FORMAT.
                                                               label: labels[i % labels.length],
                                                               dogName:dog.name,
-                                                             map:map//,
+                                                             map:map,//,
                                                               dogPicUrl:dog.picURL,
                                                               dogUrl: dog.url,
                                                               ownerUrl:dog.owner // TODO : get owner uri.
@@ -117,13 +117,9 @@
 
                                                  });
 
-<<<<<<< HEAD
-                                                           console.log(infowindows)
 
-                                                        var markerCluster = new MarkerClusterer(map, mrkrs, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-=======
                                                         var markerCluster = new MarkerClusterer(map, markers, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
->>>>>>> 2c91ef3e5f486d2b6d444981b9f39622d9e82ea5
+
                                                   //    map.setCenter(pos);
                                                   google.maps.event.addListener(map, 'tilesloaded', function(){
                                                        //document.getElementById('loading').innerHTML = '';
