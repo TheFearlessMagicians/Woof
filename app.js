@@ -76,11 +76,20 @@ io.on('connection', function(socket) {
             type: "Point",
             'coordinates': coordinates,
         };
-        Dog.find({
+     /*   Dog.find({
             geo: {
                     $near: coordinates,
-                }
-        }, function(error, foundDogs) {
+          }*/
+          let diff = 0.001
+          let queryObject = {
+          }
+          let latObject={$lt:(Number(latLng.lat)+diff),$gt:(Number(latLng.lat)-diff)};
+          let lngObject={$lt:(Number(latLng.lng)+diff),$gt:(Number(latLng.lng)-diff)};
+          queryObject.and([latObject,lngObject]);
+           Dog.find({queryObject
+
+
+      }, function(error, foundDogs) {
             if (error) {
                 console.log(error);
                 //IT GOES HERE. THERE IS AN ERROR FINDING DOGs.

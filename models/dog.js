@@ -1,7 +1,7 @@
 //Mongoose set up
 let mongoose = require("mongoose");
 
-//Schema set up 
+//Schema set up
 let dogSchema = new mongoose.Schema ({
 	name: String,
 	age: Number,
@@ -10,10 +10,7 @@ let dogSchema = new mongoose.Schema ({
 	isTherapyDog: Boolean,
 	behaviourWithStrangers: String,
 	description: String,
-	loc: {
-		type:  mongoose.Schema.Types.Point,
-		coordinates:[Number]
-	},
+          geo:{lat:Number,lng:Number},
 	owner: {
 		type: mongoose.Schema.ObjectId,
 		ref: "User",

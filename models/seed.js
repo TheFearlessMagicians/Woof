@@ -56,12 +56,10 @@ function seed() {
                     for (let key in seedDogs) {
                         Dog.create({
                             name: key,
-                            breed: key.breed,
-                            age: key.age,
+                            breed: seedDogs[key].breed,
+                            age: seedDogs[key].age,
                             owner: createdUser,
-                            loc: {
-                                coordinates: key.location
-                            }
+                            geo:{"lng":seedDogs[key].location[0],"lat":seedDogs[key].location[1]}
                         }, function(error, createdDog) {
                             if (error) {
                                 console.log("UNABLE CREATE DOG WHEN SEEDING");
