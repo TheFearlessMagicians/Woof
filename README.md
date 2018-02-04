@@ -3,9 +3,10 @@ This is Woof. It is Wilson's, Varun's and Hanif's HackUCI 2018 project submissio
 
 ## What is Woof?
 Woof is an app for dog owners and dog lovers to connect with one another. Perfect for stressed out college students and those in need of a service animal/therapy puppy.
-
 ![Our app image](https://github.com/TheFearlessMagicians/Woof/blob/master/public/woof.png)
+
 You can chat with dog owners and meet up with them anytime, anywhere!
+
 ![Our app image](https://github.com/TheFearlessMagicians/Woof/blob/master/public/in_app.png)
 
 ## Built with
@@ -20,7 +21,7 @@ To run this app locally, clone the directory
 
 `git clone https://github.com/TheFearlessMagicians/Woof.git`
 
-Then, make sure you have the required dependencies installed. `npm`, `mongodb`, `nodejs`.
+Then, make sure you have the required dependencies installed: `npm`, `mongodb` and `nodejs`.
 
 After that,
 ```sh
