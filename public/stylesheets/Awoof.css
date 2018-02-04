@@ -1,6 +1,10 @@
 div .form-group{
     margin-bottom: -2%;
-    margin-top: 0%;
+    margin-top: -1%;
+}
+
+#registerPage div .form-group label{
+    margin-bottom: -1.5%;
 }
 
 #landing-header {
@@ -161,7 +165,7 @@ textarea{
     display: inline-block;
     box-sizing: border-box;
     width: 100%;
-    margin: 15px 0px;
+    margin: 20px 0px;
     border: 1px solid #ccc;
 }
 
