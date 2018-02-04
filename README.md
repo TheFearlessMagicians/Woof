@@ -23,8 +23,9 @@ Then, make sure you have the required dependencies installed. `npm`, `mongodb`, 
 
 After that,
 ```sh
-$ npm install;
-$ mongod;
+$ cd Woof
+$ npm install
+$ mongod
 $ #in another terminal/shell: 
 $ npm run dev
 ```
