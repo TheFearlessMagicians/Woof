@@ -58,43 +58,46 @@ let server = app.listen(app.get('port'), function() {
 
 
   //*************SOCKET code*******************
-io.attach(server);
-let sockets = []
-io.on('connection', function(socket) {
+  io.attach(server);
+  let sockets = []
+  io.on('connection', function(socket) {
 
-    console.log('connection callback called.');
-    socket.emit('CONNECTED_USERS_INFO', { 'connected': sockets });
-    socket.broadcast.emit('SPECIAL_MESSAGE_SENT', { 'message': `${socket} connected!` })
+      console.log('connection callback called.');
+      socket.emit('CONNECTED_USERS_INFO', { 'connected': sockets });
+      socket.broadcast.emit('SPECIAL_MESSAGE_SENT', { 'message': `${socket} connected!` })
 
-    socket.on('POSITION_RECEIVED', function(latLng) {
-        //Note: latLng is a json object of :
-        //{lat: LATITUDE, lng: LONGITUDE};
-        let cordinates = [Number(latLng.lng), Number(latLng.lat)];
-        distance = 100 * 1000; //in meteres
-        point = {
-            type: "Point",
-            cordinates: cordinates,
-        };
-        Dog.find({
-            loc: {
-                $near: {
-                    $geometry: point,
-                    $maxDistance: distance,
-                }
-            }
-        }, function(error, foundDogs) {
-          console.log(foundDogs);
-            if (error){
-              console.log(error);
-            }
-            var geospatial_query_result = foundDogs;
-            socket.emit('DOGS_NEAR_USER', geospatial_query_result);
-        });
+      socket.on('POSITION_RECEIVED', function(latLng) {
+                console.log('position received.');
+          //Note: latLng is a json object of :
+          //{lat: LATITUDE, lng: LONGITUDE};
+          let coordinates = [Number(latLng.lng), Number(latLng.lat)];
+          distance = 100 * 1000; //in meteres
+          point = {
+              type: "Point",
+              'coordinates': coordinates,
+          };
+          Dog.find({
+              loc: {
+                  $near: {
+                      $geometry: point,
+                      $maxDistance: distance,
+                  }
+              }
+          }, function(error, foundDogs) {
+                    if(error){
+                              //IT GOES HERE. THERE IS AN ERROR FINDING DOGs.
+                              console.log('ERROR FINDING DOGS APP JS')
+                    }else{
+                    console.log('found dogs object server side:')
+            console.log(foundDogs);
+            //  var geospatial_query_result =
+              socket.emit('DOGS_NEAR_USER', foundDogs); // VARUN. This result undefined. ??
+   }});
 
-    });
-    socket.on('SEND_MESSAGE', function(message) {
-        socket.broadcast.emit('MESSAGE_SENT', message);
-    })
+      });
+      socket.on('SEND_MESSAGE', function(message) {
+          socket.broadcast.emit('MESSAGE_SENT', message);
+      })
 
 
-});
+  });

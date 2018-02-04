@@ -100,8 +100,8 @@
                                     </div>
                                     <div class="form-group" id="doggoNumber">
                                         <label style="margin-bottom: 2%;">How many dogs do you have?</label>
-                                        <input id="latLocation" type="number" name = "lat" style="display:none">
-                                        <input id="lngLocation" type="number" name = "lng" style="display:none">
+                                        <input id="latLocation" type="hidden" name = "latval" style="display:none">
+                                        <input id="lngLocation" type="hidden" name = "lngval" style="display:none">
                                         <input id="nDogs" type="number" placeholder="Enter Number of Dogs Here.." class="form-control" name="user[numberOfDogs]" onkeyup="insertDogsForm()">
                                     </div>
                                     <ul>
@@ -123,8 +123,9 @@
     // NAVIGATOR GEOLOCATION SCRIPT ----------------
     if (navigator.geolocation) {
        navigator.geolocation.getCurrentPosition(function(position) {
-                 $(`input#latLocation`).val('value',position.coords.latitude);
-                 $(`input#lngLocation`).val('value',position.coords.longitude);
+                 console.log(`${position.coords.latitude} ${position.coords.longitude}`);
+                 $(`input#latLocation`).val(position.coords.latitude);
+                 $(`input#lngLocation`).val(position.coords.longitude);
           });}
 
 
