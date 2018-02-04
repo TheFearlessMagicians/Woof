@@ -86,7 +86,7 @@
                                                   console.log(`no of dogs queried: ${dogs.length}`)
                                                      var markers= dogs.map(function(dog, i) {
 
-                                                                  console.log(dog.name+' marker added.'+i)
+                                                                 // console.log(dog.name+' marker added.'+i)
                                                           return new google.maps.Marker({
                                                               position: new google.maps.LatLng(parseFloat(dog.geo['lat'])+ Math.random() * 0.02, parseFloat(dog.geo['lng'])+ Math.random() * 0.02),//TODO: DIFFERENT FORMAT.
                                                               label: labels[i % labels.length],
@@ -107,7 +107,7 @@
                                                            markers.forEach((marker,i)=>{
                                                                      console.log('putting marker '+i)
                                                                    infowindows.push(  new google.maps.InfoWindow({
-                                                                                  content:  getdogPopupString(marker.dogName,'public/Dogs/samoyed-puppy.jpg',marker.dogUrl,marker.ownerUrl)
+                                                                                  content:  getdogPopupString(marker.dogName,'public/Dogs/samoyed-puppy.jpg',marker.dogUrl,'/user/'+marker.ownerUrl)
                                                                         }));
 
 

@@ -1,10 +1,5 @@
 <% include partials/header.ejs %>
-<<<<<<< HEAD
 
-=======
-<body class="index-page">
-<!-- End Navbar -->
->>>>>>> 2c91ef3e5f486d2b6d444981b9f39622d9e82ea5
 
 <div class="wrapper">
 	<div class="header header-filter" style="background-color: #DCDCDC;">
@@ -17,9 +12,9 @@
 					</div>
         </div>
 	    </div>
-    </div> 
+    </div>
   </div>
-</div> 
+</div>
 
 	<div class="main main-raised">
 		<div class="section section-basic">
@@ -89,9 +84,9 @@
 
                             <div class="input-group">
                               <span class="input-group-addon">
-                                <i class="material-icons">face</i>
+                                <i class="material-icons">name</i>
                               </span>
-                              <input type="text" class="form-control" placeholder="First Name...">
+                              <input type="text" class="form-control" id="nameContainer" placeholder=" Name...">
                             </div>
 
                             <div class="input-group">
@@ -113,8 +108,8 @@
                             <a href="#" class="btn btn-simple btn-primary btn-lg text-blue" id= 'sendMessage'>Send message</a>
                             <script>
                                         $('a#sendMessage').on('click',function(){
-                                                  id = '1'//TODO GET THE OWNERS ID HERE.
-                                                  $.post(`/expressinterest/${id}`,{'message':$('textarea#messageContainer').html()});
+                                                  let id = $('input#nameContainer').val();//TODO GET THE OWNERS ID HERE.
+                                                  $.post(`/expressinterest/${id}`,{'id':id,'message':$('textarea#messageContainer').val()});
                                         })
                             </script>
                           </div>
