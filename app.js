@@ -50,10 +50,10 @@ app.set('port', serverPort);
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.set('sockets', []);
-app.set('port','169.234.99.106');
+app.set('host','169.234.99.106');
 //Servloger listen:
 let server = app.listen(app.get('port'), function() {
-    console.log('Listening on port ' + app.get('port'));
+    console.log('Listening on host' +', port ' + app.get('port'));
 });
 
 function distance(lat1, lon1, lat2, lon2) {

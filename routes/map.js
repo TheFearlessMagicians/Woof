@@ -9,7 +9,9 @@ router.get('/main', function(req, res) {
         res.render('maps', {
             gmapsCredential: credentials.gmaps,
             'authorized': true,
-            currentUser: req.user
+            currentUser: req.user,
+            'host': req.app.get('host'),
+            'port': req.app.get('port')
         });
     } else {
         res.render('mapsFailed', {
