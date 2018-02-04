@@ -1,5 +1,5 @@
 
-<% include partials/header.ejs %>
+<% include ./partials/header.ejs %>
 
 
 <div class="wrapper">
@@ -10,6 +10,7 @@
 					<div class="card card-header">
 						<img src="https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-1/c0.24.320.320/p320x320/15442379_1191275360949377_4114530872150356823_n.jpg?oh=315fd068a7c47744a80601bbb9563a69&oe=5B1E86D9" alt="Circle Image" class="avatar img-circle img-responsive img-raised">
 						<h1><%=user.name%></h1>
+            <h2><%=user.nickname %></h2>
 					</div>
         </div>
 	    </div>
@@ -22,14 +23,16 @@
 	    	<div class="container">
 	            <div class="row">
 	            	<div class="col-md-9">
+                  <% if(user.dogs.length>0) {%>
 	            		<h2>Proud Owners Of</h2>
 			            <div class="flexcontainer">
                     <%user.dogs.forEach(function(dog) {%>
   			            	<div class="col-md-3 thumbnail">
   			            		<img class="img-rounded img-responsive img-raised" src="../public/Dogs/5.jpg">
-  			            		<a href="#"><button class="like btn btn-fab btn-fab-mini btn-round btn-blue"><i class="material-icons">Click here to view more <%=dog.name%></i></button></a>
+  			            		<a href="<%=dog.url%>"><button class="like btn btn-fab btn-fab-mini btn-round btn-blue"> <i class="material-icons">Click here to view more <%=dog.name%></i></button></a>
   			            	</div>
                     <%});%>
+                  <%}%>
 <!-- 
 			            	<div class="col-md-3 thumbnail">
 			            		<img class="img-rounded img-responsive img-raised" src="../public/Dogs/Chow_Chow.jpeg">
@@ -113,7 +116,7 @@
                                         $('a#sendMessage').on('click',function(){
                                                   let id = $('input#nameContainer').val();//TODO GET THE OWNERS ID HERE.
                                                   $.post(`/expressinterest/${id}`,{'id':id,'message':$('textarea#messageContainer').val()});
-                                        })
+                                        });
                             </script>
                           </div>
                         </form>
@@ -131,3 +134,4 @@
 </div>
 
 <script src="http://demos.creative-tim.com/material-kit/assets/js/nouislider.min.js" type="text/javascript"></script>
+<% include ./partials/footer.ejs %>
