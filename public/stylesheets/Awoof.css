@@ -140,12 +140,25 @@ div .form-group{
   height: 100%;
 }
 
+#registerPage{
+  background: url(../Dogs/CutiePie.jpeg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  overflow : scroll;
+  width : 100%;
+  height: 100%;
+}
+
 .panel-default {
 opacity: 0.9;
 margin-top:30px;
 }
 
-input{
+input[type=text],
+input[type=password],
+textarea{
     display: inline-block;
     box-sizing: border-box;
     width: 100%;
