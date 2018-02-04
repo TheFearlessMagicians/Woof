@@ -74,10 +74,15 @@
                   }
               }
           }, function(error, foundDogs) {
+                    if(error){
+                              //IT GOES HERE. THERE IS AN ERROR FINDING DOGs.
+                              console.log('ERROR FINDING DOGS APP JS')
+                    }else{
+                    console.log('found dogs object server side:')
             console.log(foundDogs);
-              var geospatial_query_result = foundDogs;
-              socket.emit('DOGS_NEAR_USER', geospatial_query_result);
-          });
+            //  var geospatial_query_result =
+              socket.emit('DOGS_NEAR_USER', foundDogs); // VARUN. This result undefined. ??
+   }});
 
       });
       socket.on('SEND_MESSAGE', function(message) {
