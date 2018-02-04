@@ -2,6 +2,11 @@
     <div class="container" id="page">
 
         <% if(authorized == true){ %>
+        <form align="right" name="Logout" method="get" action="/logout">
+            <label class="logoutLblPos">
+                <input name="logoutButton" type="submit" id="logoutButton" value="Log out!">
+            </label>
+        </form>
                 
              
                     <div class="container col-sm-12">

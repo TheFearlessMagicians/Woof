@@ -113,7 +113,7 @@ div .form-group{
     width: 100%;
     margin: 0 auto;
 
-    background-color: #7d1935;
+    background-color: #f18973;
 }
 
 #mapContainer
@@ -169,3 +169,11 @@ textarea{
 .form-group.last { 
     margin-bottom:0px;
  }
+
+ .logoutLblPos{
+
+   position:fixed;
+   right:10px;
+   top:5px;
+
+}
