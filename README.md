@@ -3,7 +3,8 @@ HackUCI project. Find me a dog!
 
 
 ## What is Woof?
-Woof is a 
+Woof is an app for dog owners and dog lovers to connect with one another.
+![Our app image](https://github.com/TheFearlessMagicians/Woof/blob/master/public/woof.png) 
 ## Running instructions
 
 To run this app, clone the directory
