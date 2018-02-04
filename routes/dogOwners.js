@@ -9,7 +9,7 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.post('/expressinterest/:id', function(req, res) {
-    let sender = req.params.id;
+    let sender = req.body.id;
     let msg = req.body.message;
     //email(sender, "wilsonjusuf1998@gmail.com", "I want your doggo!", credentials.mailgun, () => {})
     email(sender, "wilsonjusuf1998@gmail.com", msg, credentials.mailgun, () => {});
@@ -17,6 +17,7 @@ router.post('/expressinterest/:id', function(req, res) {
 
 })
 router.get('/user/:id', function(req, res) {
+
     User.findById(req.params.id).populate('dogs').exec(function(error, foundUser) {
         if (error) {
             console.log('UNABLE TO FIND USER');

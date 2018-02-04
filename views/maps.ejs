@@ -63,11 +63,11 @@
 
                                 // Try HTML5 geolocation.
                                 console.log('initmap called.')
-                                if (navigator.geolocation) {
-                                    navigator.geolocation.getCurrentPosition(function(position) {
+                              //  if (navigator.geolocation) {
+                    //                navigator.geolocation.getCurrentPosition(function(position) {
                                         var pos = {
-                                            lat: position.coords.latitude,
-                                            lng: position.coords.longitude
+                                            lat:  33.6488294,//position.coords.latitude,
+                                            lng:-117.84275960000001,//position.coords.longitude
                                         };
 
                                         socket.emit('POSITION_RECEIVED', pos);
@@ -86,12 +86,12 @@
                                                   console.log(`no of dogs queried: ${dogs.length}`)
                                                      var markers= dogs.map(function(dog, i) {
 
-                                                                  console.log(dog.name+' marker added.'+i)
+                                                                 // console.log(dog.name+' marker added.'+i)
                                                           return new google.maps.Marker({
                                                               position: new google.maps.LatLng(parseFloat(dog.geo['lat'])+ Math.random() * 0.02, parseFloat(dog.geo['lng'])+ Math.random() * 0.02),//TODO: DIFFERENT FORMAT.
                                                               label: labels[i % labels.length],
                                                               dogName:dog.name,
-                                                             map:map//,
+                                                             map:map,//,
                                                               dogPicUrl:dog.picURL,
                                                               dogUrl: dog.url,
                                                               ownerUrl:dog.owner // TODO : get owner uri.
@@ -107,7 +107,7 @@
                                                            markers.forEach((marker,i)=>{
                                                                      console.log('putting marker '+i)
                                                                    infowindows.push(  new google.maps.InfoWindow({
-                                                                                  content:  getdogPopupString(marker.dogName,'public/Dogs/samoyed-puppy.jpg',marker.dogUrl,marker.ownerUrl)
+                                                                                  content:  getdogPopupString(marker.dogName,'public/Dogs/samoyed-puppy.jpg',marker.dogUrl,'/user/'+marker.ownerUrl)
                                                                         }));
 
 
@@ -117,13 +117,9 @@
 
                                                  });
 
-<<<<<<< HEAD
-                                                           console.log(infowindows)
 
-                                                        var markerCluster = new MarkerClusterer(map, mrkrs, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-=======
                                                         var markerCluster = new MarkerClusterer(map, markers, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
->>>>>>> 2c91ef3e5f486d2b6d444981b9f39622d9e82ea5
+
                                                   //    map.setCenter(pos);
                                                   google.maps.event.addListener(map, 'tilesloaded', function(){
                                                        //document.getElementById('loading').innerHTML = '';
@@ -135,14 +131,16 @@
 
 
 
-                                    }, function() {
+                                    }
 
-                                    });
-                                } else {
+                                    //, function() {
 
-                                }
+                              //      });
+                              //  } else {
 
-                            }
+                              //  }
+
+                          //  }
 
 
                             //Loading screen for map.
@@ -157,8 +155,9 @@
                             <script>
                             //--------------Socket Script ---------------------------//
                             var numUsersOnline = "h2";
-
-                            var socket = io.connect("localhost:8000");
+                              //NOTE: SOCKET CONNECTION IS HARD CODED.
+                              //var socket = io.connect("localhost:8000");
+                            var socket = io.connect("169.234.99.106:8000");
                             socket.on('connect', function() {
 
                             });

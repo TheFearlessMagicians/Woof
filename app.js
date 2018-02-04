@@ -50,10 +50,10 @@ app.set('port', serverPort);
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.set('sockets', []);
-
+app.set('host','169.234.99.106');
 //Servloger listen:
-let server = app.listen(app.get('port'), function() {
-    console.log('Listening on port ' + app.get('port'));
+let server = app.listen(app.get('port'),app.get('host'), function() {
+    console.log('Listening on host' +app.get('host')+', port ' + app.get('port'));
 });
 
 function distance(lat1, lon1, lat2, lon2) {
@@ -105,8 +105,11 @@ io.on('connection', function(socket) {
             if (error) {
                 console.log(error);
             } else {
+
                 //Wilson here is your sorted dogs
+                socket.emit('DOGS_NEAR_USER', sortedDogs); // VARUN. This result undefined. ??
                 sortedDogs.forEach(function(pup) {
+
                     console.log(pup.name + ' ' + pup.delta);
                 });
             }

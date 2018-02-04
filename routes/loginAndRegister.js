@@ -1,6 +1,8 @@
 let express = require('express');
 router = express.Router({ mergeParams: true });
 User = require("../models/user")
+bodyParser = require("body-parser");
+router.use(bodyParser.urlencoded({ extended: true }));
 
 //AUTHENTICATION
 let passport = require("passport");
@@ -40,6 +42,7 @@ router.get('/register', function(req, res) {
 
 
 router.post("/register", function(req, res) {
+    console.log('USERNAME: ' + req.body.username);
     User.register(new User({ username: req.body.username }), req.body.password, function(error, newlyCreatedUser) {
         if (error) {
             console.log("COULD NOT REGISTER USER IN THE POST ROUTE");
@@ -91,7 +94,8 @@ router.post("/register", function(req, res) {
                     console.log("USER REGISTERED");
                     res.render('maps', {
                         gmapsCredential: credentials.gmaps,
-                        'authorized': true
+                        'authorized': true,
+                        currentUser:req.user,
                     });
                 });
             });
