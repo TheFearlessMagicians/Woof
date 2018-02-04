@@ -62,36 +62,47 @@
                                         // -------------------REAL CODE FOR MAP UPDATING ----------------------------------//
                                         socket.on('DOGS_NEAR_USER', function(dogs) {
                                                   console.log('dogs near user response received.');
+                                                  console.log(`no of dogs queried: ${dogs.length}`)
                                                      let mrkrs= dogs.map(function(dog, i) {
+
+                                                                  console.log(dog.name+' marker added.'+i)
                                                           return new google.maps.Marker({
-                                                              position: dog.geo,//TODO: DIFFERENT FORMAT.
+                                                              position: new google.maps.LatLng(parseFloat(dog.geo['lat'])+ Math.random() * 0.02,parseFloat(dog.geo['lng'])+ Math.random() * 0.02),//TODO: DIFFERENT FORMAT.
                                                               label: labels[i % labels.length],
                                                               dogName:dog.name,
-                                                              dogPicUrl:dog.picURL,
+                                                              //dogPicUrl:dog.picURL,
                                                               dogUrl: dog.url,
                                                               ownerUrl:dog.owner // TODO : get owner uri.
                                                           });
                                                       });
                                                       //
-                                                      // Add a marker clusterer to manage the markers.
-                                                      var markerCluster = new MarkerClusterer(map, mrkrs, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-                                                      mrkrs.forEach((marker)=>{google.maps.event.addListener(marker, 'click', function() {
-                                                                var infowindow = new google.maps.InfoWindow({
-                                                                             content:  getdogPopupString(marker.dogName,marker.dogPicUrl,marker.dogUrl,marker.ownerUrl)
-                                                                          });
 
-                                                        infowindow.open(map, this);
-                                                      })
+                                                      var infowindows=[];
+                                                           // Add a marker clusterer to manage the markers.
+
+                                                           mrkrs.forEach((marker,i)=>{
+
+                                                                   infowindows.push(  new google.maps.InfoWindow({
+                                                                                  content:  getdogPopupString(marker.dogName,'public/Dogs/samoyed-puppy.jpg',marker.dogUrl,marker.ownerUrl)
+                                                                        }));
+
+                                                                        google.maps.event.addListener(marker, 'click', function() {
+                                                                                  infowindows[i].open(map,this);
+                                                           });
+
+                                                      });
+
+                                                        var markerCluster = new MarkerClusterer(map, mrkrs, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
+                                                  //    map.setCenter(pos);
+                                                  google.maps.event.addListener(map, 'tilesloaded', function(){
+                                                       //document.getElementById('loading').innerHTML = '';
+                                                       $(`#loading`).css("display", "none");
                                                   });
 
                                         });
-                                        google.maps.event.addListener(map, 'tilesloaded', function(){
-                                              //document.getElementById('loading').innerHTML = '';
-                                              $(`#loading`).css("display", "none");
-                                        });
 
 
-                                        map.setCenter(pos);
+
                                     }, function() {
 
                                     });

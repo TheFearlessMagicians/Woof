@@ -54,6 +54,7 @@ router.post("/register", function(req, res) {
                 newlyCreatedUser.email = user.email;
                 newlyCreatedUser.numberOfDogs = user.numberOfDogs;
                 newlyCreatedUser.url = "/user/" + newlyCreatedUser.id;
+
                 newlyCreatedUser.save(function(error, savedUser) {
                     for (let i = 0; i < user.numberOfDogs; i++) {
                         let tempDog = req.body[`dog${i}`];
@@ -64,7 +65,7 @@ router.post("/register", function(req, res) {
                                 //TO DO CORDINATES
                                 console.log('coordinates:')
                                 console.log(req.body.lng + ' ' + req.body.lat);
-                                createdDog.location = [Number(req.body.lng), Number(req.body.lat)];
+                                createdDog.geo = {"lng":Number(req.body.lng), "lat":Number(req.body.lat)};
                                 console.log([Number(req.body.lng), Number(req.body.lat)])
                                 createdDog.owner = newlyCreatedUser;
                                 createdDog.url = "/dog/" + createdDog.id;
