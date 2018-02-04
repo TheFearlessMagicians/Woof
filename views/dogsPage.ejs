@@ -1,49 +1,17 @@
-<% include partials/header.ejs %>
-<body class="index-page">
-<!-- Navbar -->
-	<nav class="navbar navbar-fixed-top btn-blue">
-    	<div class="container">
+<% include ./partials/header.ejs %>
 
-    	</div>
-    </nav>
+ <div class="card hovercard">
+        <div class="card-background">
+            <img class="card-bkimg" alt="" src="">
+        </div>
+        <div class="useravatar text-center img-circle">
+            <img alt="" src="../public/Dogs/samoyed-puppy.jpg">
+        </div>
+        <div class="card-info"> <span class="card-title"><%= dog.name %></span>
 
-<!-- End Navbar -->
+        </div>
+</div>
 
-<div class="wrapper">
-	<div class="header header-filter" style="background-image: url('https://i.imgsafe.org/dcc803a4b5.jpg');">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2">
-					<div class="card card-header">
-						<img src="http://demos.creative-tim.com/material-kit/assets/img/avatar.jpg" alt="Circle Image" class="avatar img-circle img-responsive img-raised">
-						<a href="#"><button class="badge btn btn-fab btn-fab-mini btn-round btn-blue"><i class="material-icons">person_add</i></button></a>
-						<h1>NAME HERE</h1>
-						<h3>JOB TITLE/INFO</h3>
-
-	                    <div class="row cardindent">
-
-	                    	<div class="col-xs-6 col-md-6">
-	                    		<!--<b>743</b> following-->Irvine, California
-	                    	</div>
-	                    	<div class="col-xs-6 col-md-6">
-	                    		<b>345</b> followers
-	                    	</div>
-	                    </div>
-
-	                    <div class="progress progress-line-primary user-rating">
-	                    	<div class="progress-bar progress-bar-success" style="width: 65%">
-	                            <span class="sr-only">65% Complete (success)</span>
-	                        </div>
-	                        <div class="progress-bar progress-bar-danger" style="width: 35%">
-	                            <span class="sr-only">35% Complete (danger)</span>
-	                        </div>
-	                    </div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<div class="main main-raised">
 		<div class="section section-basic">
@@ -173,4 +141,4 @@
 	</div>
 
 </div>
-<% include /partials/header.ejs %>
+<% include ./partials/header.ejs %>
