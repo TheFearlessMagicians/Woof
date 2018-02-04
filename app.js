@@ -50,11 +50,23 @@ app.set('port', serverPort);
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.set('sockets', []);
-app.set('host','169.234.99.106');
-//Servloger listen:
-let server = app.listen(app.get('port'),app.get('host'), function() {
-    console.log('Listening on host' +app.get('host')+', port ' + app.get('port'));
+var server = '';
+if (process.argv[2] == 'local'){
+
+server = app.listen(app.get('port'), function() {
+    console.log('Listening on port ' + app.get('port'));
+
+
 });
+          app.set('isLocal',true);
+          console.log('serving on local host ')
+}else{
+          server = app.listen(app.get('port'),app.get('host'), function() {
+            console.log('Listening on host' +app.get('host')+', port ' + app.get('port'));
+         });
+         app.set('isLocal',false);
+}
+
 
 function distance(lat1, lon1, lat2, lon2) {
     var p = 0.017453292519943295; // Math.PI / 180

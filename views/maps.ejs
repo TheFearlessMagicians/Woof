@@ -156,8 +156,12 @@
                             //--------------Socket Script ---------------------------//
                             var numUsersOnline = "h2";
                               //NOTE: SOCKET CONNECTION IS HARD CODED.
-                              //var socket = io.connect("localhost:8000");
-                            var socket = io.connect("169.234.99.106:8000");
+                              <% if (local){%>
+                              var socket = io.connect("localhost:8000");
+
+                            <% }else{ %>
+                                        var socket = io.connect("169.234.99.106:8000");
+                                        <%}%>
                             socket.on('connect', function() {
 
                             });
