@@ -21,7 +21,7 @@ function seed() {
                     isTherapyDog: true,
                     behaviourWithStrangers: "friendly & playful",
                     description: "Low-set, strong and sturdily built, the Pembroke Welsh Corgi gives an impression of substance in a small space. He is one of the most agreeable small house dogs, as well as an avid competitor in many dog sports, including conformation, herding and obedience. The Pembroke Corgi is a separate breed from the Cardigan Corgi, possessing a shorter body and straighter, lighter boned legs. His ears are pointed at the tip and stand erect, and he has a short tail. The coat can be red, sable, fawn, black and tan with or without white markings.",
-                    location: [34.0689, 118.4452],
+                    location: [34.0689, -118.4452],
                 },
                 "Hillary": {
                     age: 13,
@@ -37,7 +37,7 @@ function seed() {
                     isTherapyDog: true,
                     behaviourWithStrangers: "aggressive",
                     description: "The Poodle, though often equated to the beauty with no brains, is exceptionally smart, active and excels in obedience training. The breed comes in three size varieties, which may contribute to why Poodle is one of the most popular breeds according to AKC® Registration statistics. Poodles can be a variety of solid colors, including white, black, apricot and gray, but never parti-colored.",
-                    location: [34.0195, 118.4912],
+                    location: [34.0195, -118.4912],
                 },
             }
             User.create({

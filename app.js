@@ -71,7 +71,7 @@ io.on('connection', function(socket) {
         //Note: latLng is a json object of :
         //{lat: LATITUDE, lng: LONGITUDE};
         let coordinates = [Number(latLng.lng), Number(latLng.lat)];
-        distance = 100 * 1000; //in meteres
+      let  distance= 1; //in meteres
         point = {
             type: "Point",
             'coordinates': coordinates,
@@ -80,16 +80,19 @@ io.on('connection', function(socket) {
             geo: {
                     $near: coordinates,
           }*/
-          let diff = 0.001
-          let queryObject = {
-          }
-          let latObject={$lt:(Number(latLng.lat)+diff),$gt:(Number(latLng.lat)-diff)};
-          let lngObject={$lt:(Number(latLng.lng)+diff),$gt:(Number(latLng.lng)-diff)};
-          queryObject.and([latObject,lngObject]);
-           Dog.find({queryObject
+          //let distance = 0.001
 
 
-      }, function(error, foundDogs) {
+
+          //let queryObject={"$and":[latObject,lngObject]}
+
+          //console.log(JSON.stringify(queryObject));
+          queryString = {"$and":[{'geo.lat':{"$lt":(Number(latLng.lat)+distance),"$gt":(Number(latLng.lat)-distance)}},
+          {'geo.lng':{"$lt":(Number(latLng.lng)+distance),"$gt":(Number(latLng.lng)-distance)}}]//queryObject
+
+
+};        //For now, we will bypass this to save time
+           Dog.find(/*queryString*/{}, function(error, foundDogs) {
             if (error) {
                 console.log(error);
                 //IT GOES HERE. THERE IS AN ERROR FINDING DOGs.
@@ -100,7 +103,7 @@ io.on('connection', function(socket) {
                 //  var geospatial_query_result =
                 socket.emit('DOGS_NEAR_USER', foundDogs); // VARUN. This result undefined. ??
             }
-        });
+ });//.and([latObject,lngObject]);
 
     });
     socket.on('SEND_MESSAGE', function(message) {
