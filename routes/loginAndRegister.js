@@ -30,9 +30,6 @@ router.post('/login', passport.authenticate('local', {
     successRedirect: "/main",
     failureRedirect: "/login",
 }), function(req, res) {
-    if(req.user){
-        console.log('user logged on. ')}else{
-            console.log('user no logon.');}
 });
 
 router.get('/logout', function(req,res){
