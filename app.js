@@ -56,6 +56,15 @@ let server = app.listen(app.get('port'), function() {
     console.log('Listening on port ' + app.get('port'));
 });
 
+function distance(lat1, lon1, lat2, lon2) {
+    var p = 0.017453292519943295; // Math.PI / 180
+    var c = Math.cos;
+    var a = 0.5 - c((lat2 - lat1) * p) / 2 +
+        c(lat1 * p) * c(lat2 * p) *
+        (1 - c((lon2 - lon1) * p)) / 2;
+
+    return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
+}
 
 //*************SOCKET code*******************
 io.attach(server);
@@ -71,39 +80,66 @@ io.on('connection', function(socket) {
         //Note: latLng is a json object of :
         //{lat: LATITUDE, lng: LONGITUDE};
         let coordinates = [Number(latLng.lng), Number(latLng.lat)];
-      let  distance= 1; //in meteres
-        point = {
-            type: "Point",
-            'coordinates': coordinates,
-        };
-     /*   Dog.find({
-            geo: {
-                    $near: coordinates,
-          }*/
-          //let distance = 0.001
+        let tolearance = 1;
 
+        Dog.find({}, function(error, foundDogs) {
+            if (error) {
+                console.log('DOGS NOT FOUND :( ');
+            } else {
+                foundDogs.forEach(function(foundDog) {
+                    delta = distance(coordinates[1], coordinates[0], foundDog.geo.lat, foundDog.geo.lng);
+                    foundDog.update({
+                        delta: delta,
+                    }, function(error, updatedDog) {
+                        if (error) {
+                            console.log("COULDN'T SAVE DOG");
+                        }
+                    })
+                });
+            }
 
-
-          //let queryObject={"$and":[latObject,lngObject]}
-
-          //console.log(JSON.stringify(queryObject));
-          queryString = {"$and":[{'geo.lat':{"$lt":(Number(latLng.lat)+distance),"$gt":(Number(latLng.lat)-distance)}},
-          {'geo.lng':{"$lt":(Number(latLng.lng)+distance),"$gt":(Number(latLng.lng)-distance)}}]//queryObject
-
-
-};        //For now, we will bypass this to save time
-           Dog.find(/*queryString*/{}, function(error, foundDogs) {
+        });
+        Dog.find({}).sort([
+            ['delta', 'ascending']
+        ]).exec(function(error, sortedDogs) {
             if (error) {
                 console.log(error);
-                //IT GOES HERE. THERE IS AN ERROR FINDING DOGs.
-                console.log('ERROR FINDING DOGS APP JS')
             } else {
-                console.log('found dogs object server side:')
-                console.log(foundDogs);
-                //  var geospatial_query_result =
-                socket.emit('DOGS_NEAR_USER', foundDogs); // VARUN. This result undefined. ??
+                //Wilson here is your sorted dogs
+                sortedDogs.forEach(function(pup) {
+                    console.log(pup.name + ' ' + pup.delta);
+                });
             }
- });//.and([latObject,lngObject]);
+        });
+
+
+        /*   Dog.find({
+               geo: {
+                       $near: coordinates,
+             }*/
+        //let distance = 0.001
+
+
+
+        //let queryObject={"$and":[latObject,lngObject]}
+
+        //console.log(JSON.stringify(queryObject));
+        //           queryString = {"$and":[{'geo.lat':{"$lt":(Number(latLng.lat)+distance),"$gt":(Number(latLng.lat)-distance)}},
+        //           {'geo.lng':{"$lt":(Number(latLng.lng)+distance),"$gt":(Number(latLng.lng)-distance)}}]//queryObject
+
+        // };        //For now, we will bypass this to save time
+        //            Dog.find(/*queryString*/{}, function(error, foundDogs) {
+        //             if (error) {
+        //                 console.log(error);
+        //                 //IT GOES HERE. THERE IS AN ERROR FINDING DOGs.
+        //                 console.log('ERROR FINDING DOGS APP JS')
+        //             } else {
+        //                 console.log('found dogs object server side:')
+        //                 console.log(foundDogs);
+        //                 //  var geospatial_query_result =
+        //                 socket.emit('DOGS_NEAR_USER', foundDogs); // VARUN. This result undefined. ??
+        //             }
+        //  });//.and([latObject,lngObject]);
 
     });
     socket.on('SEND_MESSAGE', function(message) {

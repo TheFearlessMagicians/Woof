@@ -12,8 +12,6 @@ function seed() {
         if (error) {
             console.log(error);
         } else {
-            User.collection.drop();
-            Dog.collection.drop();
             seedDogs = {
                 "Paris": {
                     age: 13,
