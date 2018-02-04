@@ -20,3 +20,4 @@ npm install;
 mongod;
 npm run dev
 ```
+Be sure to create a directory in the root called /credentials with a file credentials.js in it with all your API key's needed. This includes Google Maps API key. 
