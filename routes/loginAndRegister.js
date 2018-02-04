@@ -96,6 +96,7 @@ router.post("/register", function(req, res) {
                         gmapsCredential: credentials.gmaps,
                         'authorized': true,
                         currentUser:req.user,
+                        local:req.app.get('isLocal')
                     });
                 });
             });

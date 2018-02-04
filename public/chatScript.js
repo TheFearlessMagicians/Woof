@@ -8,7 +8,7 @@ socket.on('SPECIAL_MESSAGE_SENT',function(msg){
           sendSpecialMessage(msg.message)
 })
 socket.on('CONNECTED_USERS_INFO',function(users){
-          sendSpecialMessage(`${users.length} doggos are online!`);
+          sendSpecialMessage(`Doggo owners are online!`);
 })
 function sendSpecialMessage(arg){
           $('ul.messages').append(` <li class="list-group-item list-group-item-success">${arg}</li>`);
