@@ -11,7 +11,7 @@ function seed() {
     }, function(error, foundUsers) {
         if (error) {
             console.log(error);
-        } else {
+        } else if (foundUsers.length == 0) {
             seedDogs = {
                 "Paris": {
                     age: 13,
@@ -79,5 +79,4 @@ function seed() {
         }
     });
 }
-
-    module.exports = seed;
+module.exports = seed;

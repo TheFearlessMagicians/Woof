@@ -1,29 +1,12 @@
 let express = require('express');
 router = express.Router({ mergeParams: true });
 User = require("../models/user")
-bodyParser = require("body-parser");
-router.use(bodyParser.urlencoded({ extended: true }));
 
 //AUTHENTICATION
 let passport = require("passport");
-//PASSPORT CONFIGURATION
-// app.use(require("express-session")({
-//     secret: "I wanna go poopie",
-//     resave: false,
-//     saveUninitialized: false,
-// }));
-// app.use(passport.initialize());
-// app.use(passport.session());
-// app.use(function(req, res, next) {
-//     res.locals.currentUser = req.user;
-//     next();
-// });
-// passport.use(new LocalStratergy(User.authenticate()));
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
 
 router.get('/login', function(req, res) {
-    res.render('login', {currentUser: req.user});
+    res.render('login', { currentUser: req.user });
 });
 
 router.post('/login', passport.authenticate('local', {
@@ -37,7 +20,7 @@ router.get('/logout', function(req, res) {
 });
 
 router.get('/register', function(req, res) {
-    res.render('register', {currentUser: req.user});
+    res.render('register', { currentUser: req.user });
 });
 
 
@@ -66,9 +49,10 @@ router.post("/register", function(req, res) {
                                 console.log("DOG NOT CREATED! WOOF WOOF");
                             } else {
                                 //TO DO CORDINATES
+                                createdDog.img = req.body.dog.img;
                                 console.log('coordinates:')
                                 console.log(req.body.lng + ' ' + req.body.lat);
-                                createdDog.geo = {"lng":Number(req.body.lng), "lat":Number(req.body.lat)};
+                                createdDog.geo = { "lng": Number(req.body.lng), "lat": Number(req.body.lat) };
                                 console.log([Number(req.body.lng), Number(req.body.lat)])
                                 createdDog.owner = newlyCreatedUser;
                                 createdDog.url = "/dog/" + createdDog.id;
@@ -95,8 +79,8 @@ router.post("/register", function(req, res) {
                     res.render('maps', {
                         gmapsCredential: credentials.gmaps,
                         'authorized': true,
-                        currentUser:req.user,
-                        local:req.app.get('isLocal')
+                        currentUser: req.user,
+                        local: req.app.get('isLocal')
                     });
                 });
             });

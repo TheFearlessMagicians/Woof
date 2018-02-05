@@ -10,7 +10,7 @@
 					<div class="card card-header">
 						<img src="https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-1/c0.24.320.320/p320x320/15442379_1191275360949377_4114530872150356823_n.jpg?oh=315fd068a7c47744a80601bbb9563a69&oe=5B1E86D9" alt="Circle Image" class="avatar img-circle img-responsive img-raised">
 						<h1><%=user.name%></h1>
-            <h2><%=user.nickname %></h2>
+            <h2></h2>
 					</div>
         </div>
 	    </div>
@@ -28,8 +28,9 @@
 			            <div class="flexcontainer">
                     <%user.dogs.forEach(function(dog) {%>
   			            	<div class="col-md-3 thumbnail">
-  			            		<img class="img-rounded img-responsive img-raised" src="../public/Dogs/5.jpg">
-  			            		<a href="<%=dog.url%>"><button class="like btn btn-fab btn-fab-mini btn-round btn-blue"> <i class="material-icons">Click here to view more <%=dog.name%></i></button></a>
+  			            		<img class="img-rounded img-responsive img-raised" src="<%=dog.img%>">
+                        <%=console.log(dog.img);%>
+  			            		<a href="<%=dog.url%>"><button class="like btn btn-fab btn-fab-mini btn-round btn-blue"> <i class="material-icons">Click here to view more about <%=dog.name%></i></button></a>
   			            	</div>
                     <%});%>
                   <%}%>
@@ -53,6 +54,7 @@
                     <div class="col-md-12 col-xs-12">
                       <h2>How are my dogs?</h2>
                         <p>
+                          Call me <%=user.nickname %>.
                           My dogs are incredibly friendly. They love playing with strangers and would definitely love to have you as company. Playing fetch and eating a jerky are some their favourites to do!
                         </p>
 
