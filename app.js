@@ -21,6 +21,10 @@ mongoose.connect("mongodb://localhost/Woof");
 Dog = require("./models/dog");
 User = require("./models/user");
 
+//MethodOverride set up
+let methodOverride = require('method-override')
+app.use(methodOverride('_method'))
+
 //Seed file set up and run!
 seed = require("./models/seed");
 seed();
@@ -51,20 +55,17 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.set('sockets', []);
 var server = '';
-if (process.argv[2] == 'local'){
-
-server = app.listen(app.get('port'), function() {
-    console.log('Listening on port ' + app.get('port'));
-
-
-});
-          app.set('isLocal',true);
-          console.log('serving on local host ')
-}else{
-          server = app.listen(app.get('port'),app.get('host'), function() {
-            console.log('Listening on host' +app.get('host')+', port ' + app.get('port'));
-         });
-         app.set('isLocal',false);
+if (process.argv[2] == 'local') {
+    server = app.listen(app.get('port'), function() {
+        console.log('Listening on port ' + app.get('port'));
+    });
+    app.set('isLocal', true);
+    console.log('serving on local host ')
+} else {
+    server = app.listen(app.get('port'), app.get('host'), function() {
+        console.log('Listening on host' + app.get('host') + ', port ' + app.get('port'));
+    });
+    app.set('isLocal', false);
 }
 
 
@@ -88,7 +89,7 @@ io.on('connection', function(socket) {
     socket.broadcast.emit('SPECIAL_MESSAGE_SENT', { 'message': `Someone connected!` })
 
     socket.on('POSITION_RECEIVED', function(latLng) {
-                        sockets.push(0);
+        sockets.push(0);
         console.log('position received.');
         //Note: latLng is a json object of :
         //{lat: LATITUDE, lng: LONGITUDE};
@@ -161,6 +162,4 @@ io.on('connection', function(socket) {
     socket.on('SEND_MESSAGE', function(message) {
         socket.broadcast.emit('MESSAGE_SENT', message);
     })
-
-
 });

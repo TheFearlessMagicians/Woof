@@ -49,7 +49,19 @@
          
                   
 
-
+<div>
+<!-- Delete and Edit Button -->
+  <%if(currentUser){%>
+    <%if(currentUser._id.equals(dog.owner._id)) {%>
+      <form action="<%=dog.url%>?_method=DELETE" method="POST" accept-charset="utf-8">
+        <button class="btn btn-danger">Delete</button>
+      </form>
+      <form action="<%=dog.url%>/edit" method="GET" accept-charset="utf-8">
+        <button class="btn btn-warning">Edit</button>
+      </form>
+    <%}%>
+  <%}%>
+</div>
 
 
 
