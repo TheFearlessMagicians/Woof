@@ -15,6 +15,10 @@ let dogSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: "User",
     },
+    location: {
+        type: [Number],
+        index: '2d',
+    },
     created: {
         type: Date,
         default: Date.now,

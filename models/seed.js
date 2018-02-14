@@ -57,7 +57,8 @@ function seed() {
                             breed: seedDogs[key].breed,
                             age: seedDogs[key].age,
                             owner: createdUser,
-                            geo:{"lng":seedDogs[key].location[0],"lat":seedDogs[key].location[1]}
+                            geo:{"lng":seedDogs[key].location[0],"lat":seedDogs[key].location[1]},
+                            location: seedDogs[key].location,
                         }, function(error, createdDog) {
                             if (error) {
                                 console.log("UNABLE CREATE DOG WHEN SEEDING");

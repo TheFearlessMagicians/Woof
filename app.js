@@ -35,6 +35,7 @@ app.use(require('express-session')({
     resave: false,
     saveUninitialized: false
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -83,83 +84,72 @@ function distance(lat1, lon1, lat2, lon2) {
 io.attach(server);
 let sockets = []
 io.on('connection', function(socket) {
-
     console.log('connection callback called.');
     socket.emit('CONNECTED_USERS_INFO', { 'connected': sockets });
     socket.broadcast.emit('SPECIAL_MESSAGE_SENT', { 'message': `Someone connected!` })
-
     socket.on('POSITION_RECEIVED', function(latLng) {
         sockets.push(0);
         console.log('position received.');
         //Note: latLng is a json object of :
         //{lat: LATITUDE, lng: LONGITUDE};
         let coordinates = [Number(latLng.lng), Number(latLng.lat)];
+        let location = [34.0689, -118.4452];
         let tolearance = 1;
-
-        Dog.find({}, function(error, foundDogs) {
-            if (error) {
-                console.log('DOGS NOT FOUND :( ');
-            } else {
-                foundDogs.forEach(function(foundDog) {
-                    delta = distance(coordinates[1], coordinates[0], foundDog.geo.lat, foundDog.geo.lng);
-                    foundDog.update({
-                        delta: delta,
-                    }, function(error, updatedDog) {
-                        if (error) {
-                            console.log("COULDN'T SAVE DOG");
-                        }
-                    })
-                });
+        Dog.find({
+            location: {
+                $near: location,
+                $maxDistance: tolearance,
             }
-
-        });
-        Dog.find({}).sort([
-            ['delta', 'ascending']
-        ]).exec(function(error, sortedDogs) {
+        }, function(error, foundPups) {
             if (error) {
                 console.log(error);
             } else {
-
-                //Wilson here is your sorted dogs
-                socket.emit('DOGS_NEAR_USER', sortedDogs); // VARUN. This result undefined. ??
-                sortedDogs.forEach(function(pup) {
-
-                    console.log(pup.name + ' ' + pup.delta);
+                console.log("FOUND DOGS");
+                //WILSON !!
+                //foundPups is an array of Dog objects
+                //pup below is each dog .location gives you the coordinates
+                foundPups.forEach(function(pup) {
+                    if (typeof pup.location !== "undefined") {
+                        console.log(pup.location);
+                    }
                 });
             }
         });
+        //     Dog.find({}, function(error, foundDogs) {
+        //         if (error) {
+        //             console.log('DOGS NOT FOUND :( ');
+        //         } else {
+        //             foundDogs.forEach(function(foundDog) {
+        //                 delta = distance(coordinates[1], coordinates[0], foundDog.geo.lat, foundDog.geo.lng);
+        //                 foundDog.update({
+        //                     delta: delta,
+        //                     location: location,
+        //                 }, function(error, updatedDog) {
+        //                     if (error) {
+        //                         console.log("COULDN'T SAVE DOG");
+        //                     } else {
+        //                         console.log(updatedDog.location);
+        //                     }
+        //                 });
+        //             });
+        //         }
+        //     });
+        //     Dog.find({}).sort([
+        //         ['delta', 'ascending']
+        //     ]).exec(function(error, sortedDogs) {
+        //         if (error) {
+        //             console.log(error);
+        //         } else {
+        //             //Wilson here is your sorted dogs
+        //             socket.emit('DOGS_NEAR_USER', sortedDogs); // VARUN. This result undefined. ??
+        //             sortedDogs.forEach(function(pup) {
 
-
-        /*   Dog.find({
-               geo: {
-                       $near: coordinates,
-             }*/
-        //let distance = 0.001
-
-
-
-        //let queryObject={"$and":[latObject,lngObject]}
-
-        //console.log(JSON.stringify(queryObject));
-        //           queryString = {"$and":[{'geo.lat':{"$lt":(Number(latLng.lat)+distance),"$gt":(Number(latLng.lat)-distance)}},
-        //           {'geo.lng':{"$lt":(Number(latLng.lng)+distance),"$gt":(Number(latLng.lng)-distance)}}]//queryObject
-
-        // };        //For now, we will bypass this to save time
-        //            Dog.find(/*queryString*/{}, function(error, foundDogs) {
-        //             if (error) {
-        //                 console.log(error);
-        //                 //IT GOES HERE. THERE IS AN ERROR FINDING DOGs.
-        //                 console.log('ERROR FINDING DOGS APP JS')
-        //             } else {
-        //                 console.log('found dogs object server side:')
-        //                 console.log(foundDogs);
-        //                 //  var geospatial_query_result =
-        //                 socket.emit('DOGS_NEAR_USER', foundDogs); // VARUN. This result undefined. ??
-        //             }
-        //  });//.and([latObject,lngObject]);
-
+        //                 console.log(pup.name + ' ' + pup.delta);
+        //             });
+        //         }
+        //     });
     });
     socket.on('SEND_MESSAGE', function(message) {
         socket.broadcast.emit('MESSAGE_SENT', message);
-    })
+    });
 });

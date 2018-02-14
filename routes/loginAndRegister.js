@@ -1,11 +1,29 @@
 let express = require('express');
 router = express.Router({ mergeParams: true });
-User = require("../models/user")
+User = require("../models/user");
+// Dog = require("../models/dog");
 
 //AUTHENTICATION
 let passport = require("passport");
 
 router.get('/login', function(req, res) {
+    // Dog.find({
+    //     location: {
+    //         $near: [34.0689, -118.4452],
+    //         $maxDistance: 1,
+    //     }
+    // }, function(error, foundPups) {
+    //     if (error) {
+    //         console.log(error);
+    //     } else {
+    //         console.log("FOUND DOGS");
+    //         foundPups.forEach(function(pup) {
+    //             if (typeof pup.location !== "undefined") {
+    //                 console.log(pup.location);
+    //             }
+    //         });
+    //     }
+    // });
     res.render('login', { currentUser: req.user });
 });
 
