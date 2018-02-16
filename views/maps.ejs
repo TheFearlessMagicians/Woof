@@ -120,15 +120,14 @@
 
                                                         var markerCluster = new MarkerClusterer(map, markers, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 
+
+                                        });
                                                   //    map.setCenter(pos);
                                                   google.maps.event.addListener(map, 'tilesloaded', function(){
                                                        //document.getElementById('loading').innerHTML = '';
                                                        $(`#loading`).css("display", "none");
                                                       // map.setCenter(pos);
                                                   });
-
-                                        });
-
 
 
                                     }

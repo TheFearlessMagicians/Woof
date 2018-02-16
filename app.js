@@ -1,5 +1,9 @@
+let fs = require('fs')
+//HTTPS credentials:
 //Express set up
 let express = require("express");
+//var http = require('http')
+//var https = require('https');
 app = express();
 serverPort = 8000;
 io = require('socket.io')();
@@ -56,20 +60,27 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 app.set('sockets', []);
 var server = '';
-if (process.argv[2] == 'local') {
-    server = app.listen(app.get('port'), function() {
-        console.log('Listening on port ' + app.get('port'));
-    });
-    app.set('isLocal', true);
-    console.log('serving on local host ')
+if (process.argv[2] == 'live') {
+          server = app.listen(app.get('port'), app.get('host'), function() {
+              console.log('Listening on host' + app.get('host') + ', port ' + app.get('port'));
+       });
+         /* let pkey = fs.readFileSync('ssl/server.key');
+          let pcert = fs.readFileSync( 'ssl/mydomain.csr' )
+          var credentials = {key: pkey, cert: pcert};
+          var httpsServer = https.createServer(credentials, app).listen(app.get('port'));
+         */ app.set('isLocal', false);
 } else {
-    server = app.listen(app.get('port'), app.get('host'), function() {
-        console.log('Listening on host' + app.get('host') + ', port ' + app.get('port'));
-    });
-    app.set('isLocal', false);
+
+          server = app.listen(app.get('port'), function() {
+               console.log('Listening on port ' + app.get('port'));
+          });
+          /*var httpServer = http.createServer(app).listen(app.get('port'));
+          */app.set('isLocal', true);
+          console.log('serving on local host ')
+
 }
 
-
+/*
 function distance(lat1, lon1, lat2, lon2) {
     var p = 0.017453292519943295; // Math.PI / 180
     var c = Math.cos;
@@ -79,7 +90,7 @@ function distance(lat1, lon1, lat2, lon2) {
 
     return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
 }
-
+*/
 //*************SOCKET code*******************
 io.attach(server);
 let sockets = []
@@ -93,12 +104,12 @@ io.on('connection', function(socket) {
         //Note: latLng is a json object of :
         //{lat: LATITUDE, lng: LONGITUDE};
         let coordinates = [Number(latLng.lng), Number(latLng.lat)];
-        let location = [34.0689, -118.4452];
-        let tolearance = 1;
+        let location = coordinates;//[34.0689, -118.4452];
+        let tolerance = 1;
         Dog.find({
             location: {
                 $near: location,
-                $maxDistance: tolearance,
+                $maxDistance: tolerance,
             }
         }, function(error, foundPups) {
             if (error) {
