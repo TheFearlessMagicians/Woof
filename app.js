@@ -99,7 +99,7 @@ io.on('connection', function(socket) {
     socket.emit('CONNECTED_USERS_INFO', { 'connected': sockets });
     socket.broadcast.emit('SPECIAL_MESSAGE_SENT', { 'message': `Someone connected!` })
     socket.on('POSITION_RECEIVED', function(latLng) {
-        sockets.push(0);
+        //sockets.push(0);
         console.log('position received.');
         //Note: latLng is a json object of :
         //{lat: LATITUDE, lng: LONGITUDE};
@@ -124,6 +124,7 @@ io.on('connection', function(socket) {
                     if (typeof pup.location !== "undefined") {
                         console.log(pup.location);
                     }
+                     socket.emit('DOGS_NEAR_USER', foundPups); 
                 });
             }
         });
