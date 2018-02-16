@@ -7,23 +7,23 @@ User = require("../models/user");
 let passport = require("passport");
 
 router.get('/login', function(req, res) {
-    // Dog.find({
-    //     location: {
-    //         $near: [34.0689, -118.4452],
-    //         $maxDistance: 1,
-    //     }
-    // }, function(error, foundPups) {
-    //     if (error) {
-    //         console.log(error);
-    //     } else {
-    //         console.log("FOUND DOGS");
-    //         foundPups.forEach(function(pup) {
-    //             if (typeof pup.location !== "undefined") {
-    //                 console.log(pup.location);
-    //             }
-    //         });
-    //     }
-    // });
+    Dog.find({
+        location: {
+            $near: [ -118.4452,34.0689],
+            $maxDistance: 1,
+        }
+    }, function(error, foundPups) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log("FOUND DOGS");
+            foundPups.forEach(function(pup) {
+                if (typeof pup.location !== "undefined") {
+                    console.log(pup.location);
+                }
+            });
+        }
+    });
     res.render('login', { currentUser: req.user });
 });
 

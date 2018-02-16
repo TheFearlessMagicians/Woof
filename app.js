@@ -105,6 +105,7 @@ io.on('connection', function(socket) {
         //{lat: LATITUDE, lng: LONGITUDE};
         let coordinates = [Number(latLng.lng), Number(latLng.lat)];
         let location = coordinates;//[34.0689, -118.4452];
+        console.log('my coordinates:'+coordinates)
         let tolerance = 1;
         Dog.find({
             location: {
