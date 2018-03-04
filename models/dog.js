@@ -1,5 +1,6 @@
 //Mongoose set up
 let mongoose = require("mongoose");
+let GeoJSON = require('mongoose-geojson-schema');
 
 //Schema set up
 let dogSchema = new mongoose.Schema({
@@ -10,23 +11,20 @@ let dogSchema = new mongoose.Schema({
     isTherapyDog: Boolean,
     behaviourWithStrangers: String,
     description: String,
-    geo: { lat: Number, lng: Number },
     owner: {
         type: mongoose.Schema.ObjectId,
         ref: "User",
     },
     location: {
-        type: [Number],
-        index: '2d',
+        type: mongoose.Schema.Types.Point,
+        coordinates: [Number],
     },
     created: {
         type: Date,
         default: Date.now,
     },
-    delta: Number,
     img: String,
     url: String,
 });
-
-dogSchema.index({ 'loc': '2dsphere' });
+dogSchema.index({"location": "2dsphere"});
 module.exports = mongoose.model("Dog", dogSchema);
